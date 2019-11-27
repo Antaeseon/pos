@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="calcFunction.cs" />
+    <Compile Include="cellInfo.cs" />
     <Compile Include="FrmCancel.cs">
       <SubType>Form</SubType>
     </Compile>

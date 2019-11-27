@@ -13,7 +13,6 @@ namespace PosProject
         private string sItemName;
         private int nItemPrice;
 
-
         /// <summary>
         /// 상품의 아이디
         /// </summary>

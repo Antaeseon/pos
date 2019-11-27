@@ -15,21 +15,49 @@ namespace PosProject
 {
     class discount
     {
+        private string sDiscountId;
+        private int nCategory;
+        private int nDiscount;
+
+
         /// <summary>
-        /// 상품코드
+        /// 할인행사 Id
         /// </summary>
-        public string sDiscountId { get; set; }
+        public string m_sDiscountId
+        {
+            get { return this.sDiscountId; }
+            set { this.sDiscountId = value; }
+        }
         /// <summary>
         /// 카테고리( 1: 금액 2: 율(%) 3: N+1 )
         /// </summary>
-        public int nCategory { get; set; }
+        public int m_nCategory
+        {
+            get { return nCategory; }
+            set { this.nCategory = value; }
+        }
         /// <summary>
         /// 상품의 할인 정보
         /// </summary>
-        public int nDiscount { get; set; }
+        public int m_nDiscount
+        {
+            get { return this.nDiscount; }
+            set { this.nDiscount = value; }
+        }
+        
+        //////////////////////변수목록
 
-        /////
-        ///
-        public int nId = 0;
+        /// <summary>
+        /// 가격할인
+        /// </summary>
+        public const int s_categoryPrice = 1;
+        /// <summary>
+        /// 퍼센트할인
+        /// </summary>
+        public const int s_categoryPercent = 2;
+        /// <summary>
+        /// N+1 할인
+        /// </summary>
+        public const int s_categoryNplus1 = 3;
     }
 }

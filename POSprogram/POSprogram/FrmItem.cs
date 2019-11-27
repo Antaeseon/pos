@@ -25,7 +25,7 @@ namespace PosProject
             clear();
             try
             {
-                Hashtable hashtable = new Hashtable();
+                /*Hashtable hashtable = new Hashtable();
                 System.IO.StreamReader file =
                     new System.IO.StreamReader(@"item.mst");
                 while ((line = file.ReadLine()) != null)
@@ -60,8 +60,8 @@ namespace PosProject
                     hashtable.Add(result[0], true);
                     itemList.Add(new singleItem() { m_sItemId = result[0], m_sItemName = result[1], m_nItemPrice = Convert.ToInt32(result[2]) });
                 }
-                file.Close();
-
+                file.Close();*/
+                itemList = fileReadFunction.getSingleItemList();
                 int cnt = itemList.Count;
                 string[] data = new string[cnt];
                 

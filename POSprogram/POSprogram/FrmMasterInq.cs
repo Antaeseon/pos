@@ -14,10 +14,7 @@ namespace PosProject
     public partial class FrmMasterInq : Form
     {
         private string path;
-        private string line;
         List<singleItem> itemList = new List<singleItem>();
-        private bool flag = false;
-        System.IO.StreamReader file;
         public FrmMasterInq(string _path)
         {
             InitializeComponent();

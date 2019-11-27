@@ -16,8 +16,10 @@ namespace PosProject
         private bool bPayProgress;
         private int nTotalMoney;
         private int nReceiveMoney;
+
+
         /// <summary>
-        /// 결제진행중 플래그 
+        /// 결제 플래그 
         /// </summary>
         public bool m_bPayFlag
         {
@@ -50,24 +52,32 @@ namespace PosProject
         }
 
         /// <summary>
-        /// 
+        /// 현재 dataGrid내부에 해당 아이템 존재 유무
         /// </summary>
         public bool m_bInGrid
         {
             get { return this.bInGrid; }
             set { this.bInGrid = value; }
         }
+        /// <summary>
+        /// 결제 진행중을 나타내는 플래그
+        /// </summary>
         public bool m_bPayProgress
         {
             get { return this.bPayProgress; }
             set { this.bPayProgress = value; }
         }
+        /// <summary>
+        /// 합계금액
+        /// </summary>
         public int m_nTotalMoney
         {
             get { return this.nTotalMoney; }
             set { this.nTotalMoney = value; }
         }
-
+        /// <summary>
+        /// 받은금액
+        /// </summary>
         public int m_nReceiveMoney
         {
             get { return this.nReceiveMoney; }

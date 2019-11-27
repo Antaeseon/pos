@@ -122,9 +122,9 @@ namespace PosProject
                 hashtable.Add(result[0], true);
                 disList.Add(new discount()
                 {
-                    sDiscountId = result[0],
-                    nCategory = Convert.ToInt32(result[1]),
-                    nDiscount = Convert.ToInt32(result[2])
+                    m_sDiscountId = result[0],
+                    m_nCategory = Convert.ToInt32(result[1]),
+                    m_nDiscount = Convert.ToInt32(result[2])
                 });
             }
             file2.Close();

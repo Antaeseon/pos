@@ -22,3 +22,11 @@ C:\Users\SSG\Desktop\11_26Pos\POSprogram\funcLibrary\obj\Debug\netstandard1.4\fu
 C:\Users\SSG\Desktop\11_26Pos\POSprogram\funcLibrary\obj\Debug\netstandard1.4\funcLibrary.AssemblyInfo.cs
 C:\Users\SSG\Desktop\11_26Pos\POSprogram\funcLibrary\obj\Debug\netstandard1.4\funcLibrary.dll
 C:\Users\SSG\Desktop\11_26Pos\POSprogram\funcLibrary\obj\Debug\netstandard1.4\funcLibrary.pdb
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\funcLibrary\bin\Debug\netstandard1.4\funcLibrary.deps.json
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\funcLibrary\bin\Debug\netstandard1.4\funcLibrary.dll
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\funcLibrary\bin\Debug\netstandard1.4\funcLibrary.pdb
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\funcLibrary\obj\Debug\netstandard1.4\funcLibrary.csprojAssemblyReference.cache
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\funcLibrary\obj\Debug\netstandard1.4\funcLibrary.csproj.CoreCompileInputs.cache
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\funcLibrary\obj\Debug\netstandard1.4\funcLibrary.AssemblyInfo.cs
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\funcLibrary\obj\Debug\netstandard1.4\funcLibrary.dll
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\funcLibrary\obj\Debug\netstandard1.4\funcLibrary.pdb

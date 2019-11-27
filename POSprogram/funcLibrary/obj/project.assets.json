@@ -3832,11 +3832,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SSG\\Desktop\\11_26Pos\\POSprogram\\funcLibrary\\funcLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\SSG\\Desktop\\tsGit\\pos\\POSprogram\\funcLibrary\\funcLibrary.csproj",
       "projectName": "funcLibrary",
-      "projectPath": "C:\\Users\\SSG\\Desktop\\11_26Pos\\POSprogram\\funcLibrary\\funcLibrary.csproj",
+      "projectPath": "C:\\Users\\SSG\\Desktop\\tsGit\\pos\\POSprogram\\funcLibrary\\funcLibrary.csproj",
       "packagesPath": "C:\\Users\\SSG\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SSG\\Desktop\\11_26Pos\\POSprogram\\funcLibrary\\obj\\",
+      "outputPath": "C:\\Users\\SSG\\Desktop\\tsGit\\pos\\POSprogram\\funcLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SSG\\AppData\\Roaming\\NuGet\\NuGet.Config",

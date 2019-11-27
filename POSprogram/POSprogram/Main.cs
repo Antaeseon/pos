@@ -21,9 +21,10 @@ namespace PosProject
         private List<refTb> refList = new List<refTb>();
         private List<tran> tranList = new List<tran>();
         private List<TcpClient> clientList = new List<TcpClient>();
+        private cellInfo grid = new cellInfo();
         private posInfo pos = new posInfo();
         private string line;
-        mainVariable mv = new mainVariable();
+        private mainVariable mv = new mainVariable();
         public byte[] sendBuffer;
         TcpListener server = null; // 서버
         TcpClient clientSocket = null; // 소켓
@@ -139,21 +140,21 @@ namespace PosProject
 
             var ll = from single in itemList
                      join re in refList on single.m_sItemId equals re.m_sItemId
-                     join dis in disList on re.m_sDiscountId equals dis.sDiscountId
+                     join dis in disList on re.m_sDiscountId equals dis.m_sDiscountId
                      select new
                      {
                          iNumber = single.m_sItemId,
-                         iDisNum = dis.sDiscountId,
+                         iDisNum = dis.m_sDiscountId,
                          iPrice = single.m_nItemPrice,
-                         iCategory = dis.nCategory,
-                         iDiscnt = dis.nDiscount
+                         iCategory = dis.m_nCategory,
+                         iDiscnt = dis.m_nDiscount
                      };
             try
             {
                 Hashtable hashtable = new Hashtable();
                 foreach (var jo in ll)
                 {
-                    if (jo.iCategory == 1)
+                    if (jo.iCategory == discount.s_categoryPrice)
                     {
                         if (jo.iPrice <= jo.iDiscnt)
                         {
@@ -187,9 +188,9 @@ namespace PosProject
             adminBtn2.FlatAppearance.BorderColor = BackColor;
             adminBtn2.FlatAppearance.MouseOverBackColor = BackColor;
             adminBtn2.FlatAppearance.MouseDownBackColor = BackColor;
-            itemGrid.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            itemGrid.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            itemGrid.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            itemGrid.Columns[grid.m_cItemNum].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            itemGrid.Columns[grid.m_cItemPrice].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            itemGrid.Columns[grid.m_cItemTotal].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void btnClick(object sender, EventArgs e)
@@ -257,11 +258,10 @@ namespace PosProject
             try
             {
                 //itemForm에서 델리게이트로 이벤트 발생하면 현재 함수 Call
-                mv.m_bPayFlag = false;
                 mv.m_bInGrid = false;
                 string getNum = itemId.ToString(); //아이템의 id를 받는다.
-                int index = itemList.FindIndex(it => it.m_sItemId == getNum);
-                int rowIndex = itemGrid.Rows.Count;
+                int index = itemList.FindIndex(it => it.m_sItemId == getNum); //해당 아이템의 인덱스
+                int rowIndex = itemGrid.Rows.Count; //dataGridView의 row 숫자
 
                 if (Convert.ToInt32(itemNum.ToString()) > 2000000000 / itemList[index].m_nItemPrice)
                 {
@@ -271,18 +271,18 @@ namespace PosProject
 
                 if (rowIndex != 0)
                 {
-                    if (getNum == itemGrid.Rows[rowIndex - 1].Cells[0].Value.ToString()
-                        && itemGrid.Rows[rowIndex - 1].Cells[5].Value.ToString() == "0")
+                    if (getNum == itemGrid.Rows[rowIndex - 1].Cells[grid.m_cItemId].Value.ToString()
+                        && itemGrid.Rows[rowIndex - 1].Cells[grid.m_cItemStatus].Value.ToString() == "0")
                     {
-                        int sPlusItemNum = Convert.ToInt32(itemGrid.Rows[rowIndex - 1].Cells[2].Value);
-                        int nGidItemPrice = Convert.ToInt32(itemGrid.Rows[rowIndex - 1].Cells[3].Value);
+                        int sPlusItemNum = Convert.ToInt32(itemGrid.Rows[rowIndex - 1].Cells[grid.m_cItemNum].Value);
+                        int nGidItemPrice = Convert.ToInt32(itemGrid.Rows[rowIndex - 1].Cells[grid.m_cItemPrice].Value);
                         sPlusItemNum += Convert.ToInt32(itemNum.ToString());
                         if (sPlusItemNum >= 1000)
                         {
                             //MessageBox.Show("상품 수량은 999까지 가능합니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             //return;
 
-                            var message = itemGrid.Rows[rowIndex - 1].Cells[1].Value.ToString() + "의 수량을 " + itemNum.ToString() + "만큼 등록하시겠습니까?";
+                            var message = itemGrid.Rows[rowIndex - 1].Cells[grid.m_cItemName].Value.ToString() + "의 수량을 " + itemNum.ToString() + "만큼 등록하시겠습니까?";
                             var title = "물품 추가";
                             var result = MessageBox.Show(
                                 message,                  // the message to show
@@ -310,7 +310,7 @@ namespace PosProject
                         }
                         else
                         {
-                            var message = itemGrid.Rows[rowIndex - 1].Cells[1].Value.ToString() + "의 수량을 " + sPlusItemNum + "로 변경하시겠습니까?";
+                            var message = itemGrid.Rows[rowIndex - 1].Cells[grid.m_cItemName].Value.ToString() + "의 수량을 " + sPlusItemNum + "로 변경하시겠습니까?";
                             var title = "물품 추가";
                             var result = MessageBox.Show(
                                 message,                  // the message to show
@@ -336,8 +336,8 @@ namespace PosProject
                                 return;
                             }
 
-                            itemGrid.Rows[rowIndex - 1].Cells[2].Value = sPlusItemNum.ToString();
-                            itemGrid.Rows[rowIndex - 1].Cells[4].Value = (sPlusItemNum * nGidItemPrice).ToString();
+                            itemGrid.Rows[rowIndex - 1].Cells[grid.m_cItemNum].Value = sPlusItemNum.ToString();
+                            itemGrid.Rows[rowIndex - 1].Cells[grid.m_cItemTotal].Value = (sPlusItemNum * nGidItemPrice).ToString();
                             mv.m_bInGrid = true;
                         }
                     }
@@ -352,13 +352,13 @@ namespace PosProject
                 if (mv.m_bInGrid == false)
                 {
                     itemGrid.Rows.Add(getNum.ToString(), itemList[index].m_sItemName,
-                    itemNum.ToString(), itemList[index].m_nItemPrice, (Convert.ToInt32(itemNum.ToString()) * Convert.ToInt32(itemList[index].m_nItemPrice)).ToString(), "0");
+                    itemNum.ToString(), itemList[index].m_nItemPrice, (Convert.ToInt32(itemNum.ToString()) * Convert.ToInt32(itemList[index].m_nItemPrice)).ToString(),tran.s_itemStatusNormal.ToString());
                 }
                 //int sum = Convert.ToInt32(priceLbl.Text);
                 //sum = sum + (Convert.ToInt32(itemList[index].price) * Convert.ToInt32(itemNum.ToString()));
                 //priceLbl.Text = sum.ToString();
                 calculate();
-                itemGrid.CurrentCell = itemGrid.Rows[itemGrid.Rows.Count - 1].Cells[1];
+                itemGrid.CurrentCell = itemGrid.Rows[itemGrid.Rows.Count - 1].Cells[grid.m_cItemName];
                 sendDataGrid();
 
             }
@@ -372,17 +372,16 @@ namespace PosProject
         {
             try
             {
-                mv.m_bPayFlag = true;
                 var ll = from single in itemList
                          join re in refList on single.m_sItemId equals re.m_sItemId
-                         join dis in disList on re.m_sDiscountId equals dis.sDiscountId
+                         join dis in disList on re.m_sDiscountId equals dis.m_sDiscountId
                          select new
                          {
                              iNumber = single.m_sItemId,
                              iName = single.m_sItemName,
                              iPrice = single.m_nItemPrice,
-                             iCategory = dis.nCategory,
-                             iDiscnt = dis.nDiscount,
+                             iCategory = dis.m_nCategory,
+                             iDiscnt = dis.m_nDiscount,
                          };
                 var joinList = ll.ToList();
                 double disPrice = 0;
@@ -391,15 +390,16 @@ namespace PosProject
                 int countCancel = 0;
                 for (int rows = 0; rows < itemGrid.RowCount; rows++)
                 {
-                    if (itemGrid.Rows[rows].Cells[5].Value.ToString() == "1")
+                    if (itemGrid.Rows[rows].Cells[grid.m_cItemStatus].Value.ToString() == tran.s_itemStatusCancel.ToString())
                     {
                         countCancel++;
                         continue;
                     }
-                    sum += (Convert.ToInt32(itemGrid.Rows[rows].Cells[4].Value.ToString()));
-                    string gItemId = itemGrid.Rows[rows].Cells[0].Value.ToString();
-                    int gItemNum = Convert.ToInt32(itemGrid.Rows[rows].Cells[2].Value.ToString()); int gPrice = Convert.ToInt32(itemGrid.Rows[rows].Cells[2].Value.ToString());
-                    int gItemPrice = Convert.ToInt32(itemGrid.Rows[rows].Cells[3].Value.ToString());
+                    sum += (Convert.ToInt32(itemGrid.Rows[rows].Cells[grid.m_cItemTotal].Value.ToString()));
+                    string gItemId = itemGrid.Rows[rows].Cells[grid.m_cItemId].Value.ToString();
+                    int gItemNum = Convert.ToInt32(itemGrid.Rows[rows].Cells[grid.m_cItemNum].Value.ToString());
+                    int gPrice = Convert.ToInt32(itemGrid.Rows[rows].Cells[grid.m_cItemNum].Value.ToString());
+                    int gItemPrice = Convert.ToInt32(itemGrid.Rows[rows].Cells[grid.m_cItemPrice].Value.ToString());
 
                     var disStruc = from single in joinList
                                    where single.iNumber == gItemId
@@ -407,15 +407,15 @@ namespace PosProject
 
                     foreach (var it in disStruc)
                     {
-                        if (it.iCategory == 1) //금액
+                        if (it.iCategory == discount.s_categoryPrice) //금액
                         {
                             disPrice -= (gItemNum * it.iDiscnt);
                         }
-                        if (it.iCategory == 2) //할인
+                        if (it.iCategory == discount.s_categoryPercent) //할인
                         {
                             disPrice -= (gItemNum * gItemPrice) * (it.iDiscnt / 100.0);
                         }
-                        if (it.iCategory == 3) // n쁠원
+                        if (it.iCategory == discount.s_categoryNplus1) // n쁠원
                         {
                             disPrice -= ((gItemNum / (it.iDiscnt + 1))) * gItemPrice;
                         }
@@ -555,10 +555,10 @@ namespace PosProject
                     return;
                 }
                 int ser = itemGrid.CurrentCell.RowIndex;
-                string itemId = itemGrid.Rows[ser].Cells[0].Value.ToString();
-                string itemName = itemGrid.Rows[ser].Cells[1].Value.ToString();
-                string itemNum = itemGrid.Rows[ser].Cells[2].Value.ToString();
-                string flagNum = itemGrid.Rows[ser].Cells[5].Value.ToString();
+                string itemId = itemGrid.Rows[ser].Cells[grid.m_cItemId].Value.ToString();
+                string itemName = itemGrid.Rows[ser].Cells[grid.m_cItemName].Value.ToString();
+                string itemNum = itemGrid.Rows[ser].Cells[grid.m_cItemNum].Value.ToString();
+                string flagNum = itemGrid.Rows[ser].Cells[grid.m_cItemStatus].Value.ToString();
                 var message = "";
                 if (flagNum == "0")
                 {
@@ -587,7 +587,7 @@ namespace PosProject
                             {
                                 itemGrid.Rows[ser].Cells[i].Style.Font = new System.Drawing.Font(itemGrid.Rows[ser].Cells[i].Value.ToString(), 10, System.Drawing.FontStyle.Strikeout);
                             }
-                            itemGrid.Rows[ser].Cells[5].Value = "1";
+                            itemGrid.Rows[ser].Cells[grid.m_cItemStatus].Value = "1";
                             calculate();
                             break;
                         case DialogResult.No:
@@ -607,7 +607,7 @@ namespace PosProject
                             {
                                 itemGrid.Rows[ser].Cells[i].Style.Font = new System.Drawing.Font(itemGrid.Rows[ser].Cells[i].Value.ToString(), 10, System.Drawing.FontStyle.Regular);
                             }
-                            itemGrid.Rows[ser].Cells[5].Value = "0";
+                            itemGrid.Rows[ser].Cells[grid.m_cItemStatus].Value = "0";
                             calculate();
                             break;
                         case DialogResult.No:
@@ -693,14 +693,14 @@ namespace PosProject
                 strData += (tranList.Count.ToString() + ",");
                 for (int i = 0; i < itemGrid.Rows.Count; i++)
                 {
-                    strData += (itemGrid.Rows[i].Cells[0].Value.ToString() + ",");
-                    strData += (itemGrid.Rows[i].Cells[2].Value.ToString() + ",");
-                    strData += (itemGrid.Rows[i].Cells[5].Value.ToString() + ",");
+                    strData += (itemGrid.Rows[i].Cells[grid.m_cItemId].Value.ToString() + ",");
+                    strData += (itemGrid.Rows[i].Cells[grid.m_cItemNum].Value.ToString() + ",");
+                    strData += (itemGrid.Rows[i].Cells[grid.m_cItemStatus].Value.ToString() + ",");
                     tList.Add(new sItem()
                     {
-                        sTranItemId = itemGrid.Rows[i].Cells[0].Value.ToString(),
-                        nTranItemNum = Convert.ToInt32(itemGrid.Rows[i].Cells[2].Value),
-                        sTranItemStatus = itemGrid.Rows[i].Cells[5].Value.ToString()
+                        sTranItemId = itemGrid.Rows[i].Cells[grid.m_cItemId].Value.ToString(),
+                        nTranItemNum = Convert.ToInt32(itemGrid.Rows[i].Cells[grid.m_cItemNum].Value),
+                        sTranItemStatus = itemGrid.Rows[i].Cells[grid.m_cItemStatus].Value.ToString()
                     });
                 }
                 strData += (receiveMoney.ToString() + ",");
@@ -797,23 +797,23 @@ namespace PosProject
                 {
                     string itemId = pair.Key;
                     int itemNum = pair.Value;
-                    int Itindex = itemList.FindIndex(it => it.m_sItemId == itemId);
+                    int ItemIndex = itemList.FindIndex(it => it.m_sItemId == itemId);
                     for (int i = 0; i < itemNum / 999; i++)
                     {
-                        itemGrid.Rows.Add(itemId, itemList[Itindex].m_sItemName, 999,
-                            itemList[Itindex].m_nItemPrice
-                            , 999 * itemList[Itindex].m_nItemPrice, 0);
+                        itemGrid.Rows.Add(itemId, itemList[ItemIndex].m_sItemName, 999,
+                            itemList[ItemIndex].m_nItemPrice
+                            , 999 * itemList[ItemIndex].m_nItemPrice, 0);
                     }
                     if (itemNum % 999 > 0)
                     {
-                        itemGrid.Rows.Add(itemId, itemList[Itindex].m_sItemName, itemNum % 999,
-                        itemList[Itindex].m_nItemPrice
-                        , (itemNum % 999) * itemList[Itindex].m_nItemPrice, 0);
+                        itemGrid.Rows.Add(itemId, itemList[ItemIndex].m_sItemName, itemNum % 999,
+                        itemList[ItemIndex].m_nItemPrice
+                        , (itemNum % 999) * itemList[ItemIndex].m_nItemPrice, 0);
                     }
                 }
 
                 calculate();
-                itemGrid.CurrentCell = itemGrid.Rows[itemGrid.Rows.Count - 1].Cells[1];
+                itemGrid.CurrentCell = itemGrid.Rows[itemGrid.Rows.Count - 1].Cells[grid.m_cItemName];
                 sendDataGrid();
                 string textFile = @"tran.mst";
                 string copyFile = @"copy.mst";
@@ -900,12 +900,12 @@ namespace PosProject
                 string sendData = rCount.ToString() + ",";
                 for (int i = 0; i < rCount; i++)
                 {
-                    sendData += itemGrid.Rows[i].Cells[0].Value + ",";
-                    sendData += itemGrid.Rows[i].Cells[1].Value + ",";
-                    sendData += itemGrid.Rows[i].Cells[2].Value + ",";
-                    sendData += itemGrid.Rows[i].Cells[3].Value + ",";
-                    sendData += itemGrid.Rows[i].Cells[4].Value + ",";
-                    sendData += itemGrid.Rows[i].Cells[5].Value + ",";
+                    sendData += itemGrid.Rows[i].Cells[grid.m_cItemId].Value + ",";
+                    sendData += itemGrid.Rows[i].Cells[grid.m_cItemName].Value + ",";
+                    sendData += itemGrid.Rows[i].Cells[grid.m_cItemNum].Value + ",";
+                    sendData += itemGrid.Rows[i].Cells[grid.m_cItemPrice].Value + ",";
+                    sendData += itemGrid.Rows[i].Cells[grid.m_cItemTotal].Value + ",";
+                    sendData += itemGrid.Rows[i].Cells[grid.m_cItemStatus].Value + ",";
                 }
                 sendData += calcFunction.getIntNum(priceLbl.Text).ToString() + ",";
                 sendData += calcFunction.getIntNumber(discountLbl.Text).ToString() + ",";
@@ -922,10 +922,10 @@ namespace PosProject
 
         private void itemGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            itemGrid.Columns[3].DefaultCellStyle.Format = "N0";
-            itemGrid.Columns[4].DefaultCellStyle.Format = "N0";
-            itemGrid.Columns[3].ValueType = typeof(string);
-            itemGrid.Columns[4].ValueType = typeof(string);
+            itemGrid.Columns[grid.m_cItemPrice].DefaultCellStyle.Format = "N0";
+            itemGrid.Columns[grid.m_cItemTotal].DefaultCellStyle.Format = "N0";
+            itemGrid.Columns[grid.m_cItemPrice].ValueType = typeof(string);
+            itemGrid.Columns[grid.m_cItemTotal].ValueType = typeof(string);
         }
     }
 }

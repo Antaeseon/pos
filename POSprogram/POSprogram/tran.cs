@@ -24,6 +24,7 @@ namespace PosProject
     }
     class tran
     {
+
         private int nStatus;
         private string sDate;
         private string sPosId;
@@ -82,6 +83,37 @@ namespace PosProject
             get { return this.nTotalMoney; }
             set { this.nTotalMoney = value; }
         }
+
+
+
+        /// <summary>
+        /// 보류하지 않은 상품
+        /// </summary>
+        public const int s_itemStatusNormal = 0; 
+        /// <summary>
+        /// 보류한 상품
+        /// </summary>
+        public const int s_itemStatusCancel = 1;
+        /// <summary>
+        /// 거래보류
+        /// </summary>
+        public const int s_tranHold = 0;
+        /// <summary>
+        /// 거래완료
+        /// </summary>
+        public const int s_tranFinish = 1;
+        /// <summary>
+        /// 거래취소
+        /// </summary>
+        public const int s_tranCancel = 2;
+        /// <summary>
+        /// 거래복원
+        /// </summary>
+        public const int s_tranRecover = 3;
+
+
+        ///////////////////////////변수
+
 
     }
 }
