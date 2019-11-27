@@ -85,6 +85,8 @@ namespace PosProject
         }
 
 
+        ///////////////////////////변수
+
 
         /// <summary>
         /// 보류하지 않은 상품
@@ -110,10 +112,6 @@ namespace PosProject
         /// 거래복원
         /// </summary>
         public const int s_tranRecover = 3;
-
-
-        ///////////////////////////변수
-
 
     }
 }

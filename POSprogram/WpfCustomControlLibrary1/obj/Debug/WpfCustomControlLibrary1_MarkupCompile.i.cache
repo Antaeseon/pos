@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\Users\SSG\Desktop\11_26Pos\POSprogram\WpfCustomControlLibrary1\obj\Debug\
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\WpfCustomControlLibrary1\obj\Debug\
 WpfCustomControlLibrary1
 none
 false
@@ -12,9 +12,9 @@ DEBUG;TRACE
 
 3-36821617
 
-11-1277132605
+10-752198325
 131569487696
 Themes\Generic.xaml;receipt.xaml;Window2.xaml;
 
-False
+True
 

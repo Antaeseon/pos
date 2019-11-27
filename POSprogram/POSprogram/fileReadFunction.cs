@@ -176,7 +176,7 @@ namespace PosProject
             string line;
             while ((line = file4.ReadLine()) != null)
             {
-                List<sItem> s = new List<sItem>();
+                List<sItem> tItemList = new List<sItem>();
                 sItem tempS;
                 char sep = ',';
                 string[] result = line.Split(sep);
@@ -185,7 +185,7 @@ namespace PosProject
                     tempS.sTranItemId = result[i++];
                     tempS.nTranItemNum = Convert.ToInt32(result[i++]);
                     tempS.sTranItemStatus = result[i];
-                    s.Add(tempS);
+                    tItemList.Add(tempS);
                 }
 
                 tranList.Add(new tran()
@@ -194,7 +194,7 @@ namespace PosProject
                     m_sDate = result[1],
                     m_sPosId = result[2],
                     m_sTradeId = result[3],
-                    m_lItem = s,
+                    m_lItem = tItemList,
                     m_nReceiveMoney = Convert.ToInt32(result[result.Length - 2]),
                     m_nTotalMoney = Convert.ToInt32(result[result.Length - 1])
                 });

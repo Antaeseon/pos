@@ -26,7 +26,8 @@ namespace PosProject
         {
             try
             {
-                System.IO.StreamReader file4 =
+                tranList = fileReadFunction.getTranList();
+                /*System.IO.StreamReader file4 =
                     new System.IO.StreamReader(@"tran.mst");
 
                 while ((line = file4.ReadLine()) != null)
@@ -53,7 +54,7 @@ namespace PosProject
                         m_nTotalMoney = Convert.ToInt32(result[result.Length - 1])
                     });
                 }
-                file4.Close();
+                file4.Close();*/
             }
             catch (Exception ex)
             {
