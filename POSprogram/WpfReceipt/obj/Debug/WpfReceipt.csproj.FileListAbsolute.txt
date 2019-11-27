@@ -1,0 +1,12 @@
+C:\Users\SSG\Desktop\POSprogram\WpfReceipt\bin\Debug\WpfReceipt.dll
+C:\Users\SSG\Desktop\POSprogram\WpfReceipt\bin\Debug\WpfReceipt.pdb
+C:\Users\SSG\Desktop\POSprogram\WpfReceipt\obj\Debug\UserControl1.g.cs
+C:\Users\SSG\Desktop\POSprogram\WpfReceipt\obj\Debug\WpfReceipt_MarkupCompile.cache
+C:\Users\SSG\Desktop\POSprogram\WpfReceipt\obj\Debug\WpfReceipt_MarkupCompile.lref
+C:\Users\SSG\Desktop\POSprogram\WpfReceipt\obj\Debug\UserControl1.baml
+C:\Users\SSG\Desktop\POSprogram\WpfReceipt\obj\Debug\WpfReceipt.g.resources
+C:\Users\SSG\Desktop\POSprogram\WpfReceipt\obj\Debug\WpfReceipt.Properties.Resources.resources
+C:\Users\SSG\Desktop\POSprogram\WpfReceipt\obj\Debug\WpfReceipt.csproj.GenerateResource.cache
+C:\Users\SSG\Desktop\POSprogram\WpfReceipt\obj\Debug\WpfReceipt.csproj.CoreCompileInputs.cache
+C:\Users\SSG\Desktop\POSprogram\WpfReceipt\obj\Debug\WpfReceipt.dll
+C:\Users\SSG\Desktop\POSprogram\WpfReceipt\obj\Debug\WpfReceipt.pdb

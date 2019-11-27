@@ -1,0 +1,15 @@
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\bin\Debug\WpfCustomControlLibrary1.dll
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\bin\Debug\WpfCustomControlLibrary1.pdb
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\WpfCustomControlLibrary1.csprojAssemblyReference.cache
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\Window1.g.cs
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\WpfCustomControlLibrary1_MarkupCompile.cache
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\WpfCustomControlLibrary1_MarkupCompile.lref
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\Themes\Generic.baml
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\Window1.baml
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\WpfCustomControlLibrary1.g.resources
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\WpfCustomControlLibrary1.Properties.Resources.resources
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\WpfCustomControlLibrary1.csproj.GenerateResource.cache
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\WpfCustomControlLibrary1.csproj.CoreCompileInputs.cache
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\WpfCustomControlLibrary1.dll
+C:\Users\SSG\Desktop\POSprogram\WpfCustomControlLibrary1\obj\Debug\WpfCustomControlLibrary1.pdb

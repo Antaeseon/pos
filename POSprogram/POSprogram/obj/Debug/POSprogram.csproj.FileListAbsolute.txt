@@ -1,0 +1,13 @@
+C:\Users\194764\Desktop\POSprogram\POSprogram\bin\Debug\POSprogram.exe.config
+C:\Users\194764\Desktop\POSprogram\POSprogram\bin\Debug\POSprogram.exe
+C:\Users\194764\Desktop\POSprogram\POSprogram\bin\Debug\POSprogram.pdb
+C:\Users\194764\Desktop\POSprogram\POSprogram\obj\Debug\POSprogram.csprojAssemblyReference.cache
+C:\Users\194764\Desktop\POSprogram\POSprogram\obj\Debug\POSprogram.posScreen.resources
+C:\Users\194764\Desktop\POSprogram\POSprogram\obj\Debug\POSprogram.Properties.Resources.resources
+C:\Users\194764\Desktop\POSprogram\POSprogram\obj\Debug\POSprogram.csproj.GenerateResource.cache
+C:\Users\194764\Desktop\POSprogram\POSprogram\obj\Debug\POSprogram.csproj.CoreCompileInputs.cache
+C:\Users\194764\Desktop\POSprogram\POSprogram\obj\Debug\POSprogram.exe
+C:\Users\194764\Desktop\POSprogram\POSprogram\obj\Debug\POSprogram.pdb
+C:\Users\194764\Desktop\POSprogram\POSprogram\obj\Debug\POSprogram.Form2.resources
+C:\Users\194764\Desktop\POSprogram\POSprogram\obj\Debug\PosProject.Main.resources
+C:\Users\194764\Desktop\POSprogram\POSprogram\obj\Debug\PosProject.itemForm.resources
