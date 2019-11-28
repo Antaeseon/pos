@@ -48,6 +48,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="calcFunction.cs" />
     <Compile Include="sendMessage.cs" />
     <Compile Include="receipt.xaml.cs">
       <DependentUpon>receipt.xaml</DependentUpon>

@@ -29,7 +29,6 @@ namespace PosProject
             get { return sDiscountId; }
             set { this.sDiscountId = value; }
         }
-
         ///////////////////////변수
 
         /// <summary>

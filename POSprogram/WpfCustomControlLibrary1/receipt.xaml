@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCustomControlLibrary1"
         mc:Ignorable="d"
-        Title="Receipt" Height="512.748" Width="370.593" WindowStartupLocation="CenterScreen">
+        Title="Receipt" Height="515.948" Width="388.193" WindowStartupLocation="CenterScreen">
     <Grid Loaded="Grid_Loaded" Margin="0,0,3.6,20">
         <RichTextBox x:Name="richTextBox" Margin="10,10,10,-0.2" Block.TextAlignment="Center" FontSize="20" IsReadOnly="True" FontFamily="Consolas">
             <FlowDocument>
@@ -31,7 +31,7 @@
                     <Run FontSize="12" Text=""/>
                 </Paragraph>
                 <Paragraph LineHeight="6" TextAlignment="Left">
-                    <Run FontSize="12" Text="==============================================="/>
+                    <Run FontSize="12" Text="=================================================="/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>

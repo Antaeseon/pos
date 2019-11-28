@@ -4,26 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PosProject
+namespace WpfCustomControlLibrary1
 {
     class calcFunction
     {
-        static public uint getIntNum (string num)
+        static public uint getIntNum(string num)
         {
             string t = num.Replace(",", "");
             return Convert.ToUInt32(t);
         }
-                
+        
         static public int getIntNumber(string num)
         {
             string t = num.Replace(",", "");
             return Convert.ToInt32(t);
         }
-           
-        static public string getCommaString (int num)
+        
+        static public string getCommaString(int num)
         {
             string t = string.Format("{0:#,##0}", num);
             return t;
         }
+
     }
 }

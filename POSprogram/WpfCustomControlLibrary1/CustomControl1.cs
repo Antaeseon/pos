@@ -48,7 +48,8 @@ namespace WpfCustomControlLibrary1
     {
         static CustomControl1()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomControl1), new FrameworkPropertyMetadata(typeof(CustomControl1)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomControl1), 
+                new FrameworkPropertyMetadata(typeof(CustomControl1)));
         }
     }
 }
