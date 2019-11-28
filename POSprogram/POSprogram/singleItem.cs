@@ -37,6 +37,20 @@ namespace PosProject
             get { return nItemPrice; }
             set { this.nItemPrice = value; }
         }
+        /// <summary>
+        /// itemId의 인덱스
+        /// </summary>
+        public const int c_itemId = 0;
+        /// <summary>
+        /// itemName의 인덱스
+        /// </summary>
+        public const int c_itemName = 1;
+        /// <summary>
+        /// itemPrice의 인덱스
+        /// </summary>
+        public const int c_itemPrice = 2;
+
+
     }
 
 

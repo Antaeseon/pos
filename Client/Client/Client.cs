@@ -16,10 +16,9 @@ namespace Client
 {
     public partial class Client : Form
     {
-        private string sIp;
-        private int nPort;
         TcpClient clientSocket = new TcpClient();
         NetworkStream stream = default(NetworkStream);
+        posInfo ps = new posInfo();
         string message = string.Empty;
         public static bool isConnected { get; set; }
         public Client()
@@ -29,6 +28,7 @@ namespace Client
             t.IsBackground = true;
             t.Start();
         }
+        
         private void InitSocket()
         {
             while (!isConnected)
@@ -36,7 +36,7 @@ namespace Client
                 try
                 {
                     clientSocket = new TcpClient();
-                    clientSocket.Connect(sIp, nPort);
+                    clientSocket.Connect(ps.sIp, ps.nPort);
                     isConnected = true;
                     stream = clientSocket.GetStream();
                     Thread t_handler = new Thread(GetMessage);
@@ -72,9 +72,6 @@ namespace Client
         private void Form1_Load(object sender, EventArgs e)
         {
             this.cItemGrid.Font = new System.Drawing.Font("tahoma", 10, System.Drawing.FontStyle.Regular);
-            posInfo ps = new posInfo();
-            sIp = ps.sIp;
-            nPort = ps.nPort;
             cItemGrid.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             cItemGrid.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             cItemGrid.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -104,7 +101,6 @@ namespace Client
                     t.IsBackground = true;
                     t.Start();
                 }));
-
             }
         }
 
@@ -115,13 +111,16 @@ namespace Client
                 //연결된 클라이언트가 보낸 데이터 수신
                 string[] result = text.Split(',');
                 clear();
-                for (int i = 0; i < Convert.ToInt32(result[0]); i++)
+                for (int i = 0; i < Convert.ToInt32(result[sendMessage.c_totalItemNum]); i++)
                 {
-                    int tnum = i * 6;
+                    int nextItemIndex = i * 6;
                     this.Invoke(new Action(delegate ()
                     {
-                        this.cItemGrid.Rows.Add(result[tnum + 1], result[tnum + 2], result[tnum + 3], result[tnum + 4], Convert.ToInt32(result[tnum + 3]) * Convert.ToInt32(result[tnum + 4]));
-                        if (result[tnum + 6] == "1")
+                        this.cItemGrid.Rows.Add(result[nextItemIndex + sendMessage.c_itemId], result[nextItemIndex + sendMessage.c_itemName],
+                            result[nextItemIndex + sendMessage.c_itemNum], result[nextItemIndex + sendMessage.c_itemPrice],
+                            Convert.ToInt32(result[nextItemIndex + sendMessage.c_itemNum]) 
+                            * Convert.ToInt32(result[nextItemIndex + sendMessage.c_itemPrice]));
+                        if (result[nextItemIndex + 6] == sendMessage.s_hold.ToString())
                         {
                             for (int ii = 0; ii < 5; ii++)
                             {
@@ -130,12 +129,17 @@ namespace Client
                         }
                     }));
                 }
+                int priceIndex = 6 * Convert.ToInt32(result[0]) + 1;
+                int discountIndex = 6 * Convert.ToInt32(result[0]) + 2;
+                int receiveIndex = 6 * Convert.ToInt32(result[0]) + 3;
+                int totalIndex = 6 * Convert.ToInt32(result[0]) + 4;
+
                 this.Invoke(new Action(delegate ()
                 {
-                    priceLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[6 * Convert.ToInt32(result[0]) + 1]));
-                    discountLbl.Text = calcFunction.getCommaString(Convert.ToInt16(result[6 * Convert.ToInt32(result[0]) + 2]));
-                    receiveLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[6 * Convert.ToInt32(result[0]) + 3]));
-                    totalLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[6 * Convert.ToInt32(result[0]) + 4]));
+                    priceLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[priceIndex]));
+                    discountLbl.Text = calcFunction.getCommaString(Convert.ToInt16(result[discountIndex]));
+                    receiveLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[receiveIndex]));
+                    totalLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[totalIndex]));
                 }));
 
                 if (cItemGrid.Rows.Count == 0)

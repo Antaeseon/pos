@@ -115,7 +115,6 @@ C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.Main.r
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.FrmItem.resources
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.FrmMasterInq.resources
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.Properties.Resources.resources
-C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.FrmReceipt.resources
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.FrmRecover.resources
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.csproj.GenerateResource.cache
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.csproj.CoreCompileInputs.cache

@@ -48,7 +48,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="message.cs" />
+    <Compile Include="sendMessage.cs" />
     <Compile Include="receipt.xaml.cs">
       <DependentUpon>receipt.xaml</DependentUpon>
     </Compile>

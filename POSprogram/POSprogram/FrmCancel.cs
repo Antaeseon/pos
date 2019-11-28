@@ -49,7 +49,6 @@ namespace PosProject
         {
             Button btn = sender as Button;
             string s = btn.Text;
-
             switch (s)
             {
                 case "제품결함":

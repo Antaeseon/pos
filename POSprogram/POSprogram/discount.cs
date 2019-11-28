@@ -59,5 +59,19 @@ namespace PosProject
         /// N+1 할인
         /// </summary>
         public const int s_categoryNplus1 = 3;
+        /// <summary>
+        /// discount Id
+        /// </summary>
+        public const int c_discountId = 0;
+        /// <summary>
+        /// category
+        /// </summary>
+        public const int c_category = 1;
+        /// <summary>
+        /// 할인양
+        /// </summary>
+        public const int c_discount = 2;
+
+
     }
 }

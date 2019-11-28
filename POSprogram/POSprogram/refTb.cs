@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PosProject
 {
 
-    
+
     class refTb
     {
         private string sItemId;
@@ -30,5 +30,15 @@ namespace PosProject
             set { this.sDiscountId = value; }
         }
 
+        ///////////////////////변수
+
+        /// <summary>
+        /// 아이템 아이디
+        /// </summary>
+        public const int c_itemId = 0;
+        /// <summary>
+        /// 할인 아이디
+        /// </summary>
+        public const int c_discountId = 1;
     }
 }

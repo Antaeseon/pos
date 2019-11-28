@@ -19,13 +19,13 @@
                     <Run/>
                 </Paragraph>
                 <Paragraph LineHeight="6" TextAlignment="Right">
-                    <Run FontSize="12" Text="[매장명] : 이마트 성수 "/>
+                    <Run FontSize="12" Text="[매장명] : 이마트성수 "/>
                 </Paragraph>
                 <Paragraph LineHeight="6" TextAlignment="Right">
-                    <Run FontSize="12" Text="[사업자] : 이마트 성수 "/>
+                    <Run FontSize="12" Text="[사업자] : 이마트성수 "/>
                 </Paragraph>
                 <Paragraph LineHeight="6" TextAlignment="Right">
-                    <Run FontSize="12" Text="[대표자] : 이마트 성수 "/>
+                    <Run FontSize="12" Text="[대표자] : 이마트성수 "/>
                 </Paragraph>
                 <Paragraph LineHeight="6" TextAlignment="Right">
                     <Run FontSize="12" Text=""/>

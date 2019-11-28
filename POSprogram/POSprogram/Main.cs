@@ -71,7 +71,7 @@ namespace PosProject
         {
             SendMessageAll(message);
         }
-
+        
         public void SendMessageAll(string message)
         {
             try
@@ -531,7 +531,6 @@ namespace PosProject
             dlg.ShowDialog();
         }
 
-
         private void getAdminFlag(bool flag)
         {
             if (flag)
@@ -919,6 +918,8 @@ namespace PosProject
                 return null;
             }
         }
+
+
 
         private void itemGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {

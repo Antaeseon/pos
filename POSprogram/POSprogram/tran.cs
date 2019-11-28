@@ -84,10 +84,6 @@ namespace PosProject
             set { this.nTotalMoney = value; }
         }
 
-
-        ///////////////////////////변수
-
-
         /// <summary>
         /// 보류하지 않은 상품
         /// </summary>
@@ -113,5 +109,29 @@ namespace PosProject
         /// </summary>
         public const int s_tranRecover = 3;
 
+        /// <summary>
+        /// status
+        /// </summary>
+        public const int c_status=0;
+        /// <summary>
+        /// date
+        /// </summary>
+        public const int c_date =1;
+        /// <summary>
+        /// posId
+        /// </summary>
+        public const int c_posId =2;
+        /// <summary>
+        /// tradeId
+        /// </summary>
+        public const int c_tradeId =3;
+        /// <summary>
+        /// receiveMoney
+        /// </summary>
+        public const int c_receiveMoney=4;
+        /// <summary>
+        /// totalMoney
+        /// </summary>
+        public const int c_totalMoney=5;
     }
 }
