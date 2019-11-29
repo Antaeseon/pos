@@ -94,13 +94,14 @@ namespace PosProject
 
         public void buttonClear()
         {
+            tableLayoutPanel2.Visible = false;
             mv.m_bAdminAccess1 = false;
             mv.m_bAdminAccess2 = false;
             mv.m_bAdminFlag = false;
-            logOutBtn.Visible = false;
-            selectCancelBtn.Visible = false;
-            allCancelBtn.Visible = false;
-            recoverBtn.Visible = false;
+            ///logOutBtn.Visible = false;
+            //selectCancelBtn.Visible = false;
+            //allCancelBtn.Visible = false;
+            //recoverBtn.Visible = false;
             adminBtn.Visible = false;
             adminOffBtn.Visible = false;
         }
@@ -114,6 +115,7 @@ namespace PosProject
             discountLbl.Text = "0";
             totalLbl.Text = "0";
             receiveLbl.Text = "0";
+            restLbl.Text = "";
             itemGrid.DataSource = null;
             itemGrid.Rows.Clear();
             itemGrid.Refresh();
@@ -230,11 +232,13 @@ namespace PosProject
                 case "관리자off":
                     buttonClear();
                     break;
+                case "거래조회":
+                    openTran();
+                    break;
                 default:
                     break;
             }
         }
-
 
         private void enroll()
         {
@@ -458,21 +462,35 @@ namespace PosProject
             {
                 string cashMoney = _id.Result;
                 int iCash = Convert.ToInt32(cashMoney);
+                int restCash = 0;
+                uint receiveTotal = Convert.ToUInt32(iCash)+Convert.ToUInt32(mv.m_nReceiveMoney);
+                
+                if( receiveTotal> 2100000000 )
+                {
+                    MessageBox.Show("받은 금액이 21억 이상입니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
 
                 if (mv.m_nReceiveMoney + iCash < mv.m_nTotalMoney)
                 {
                     mv.m_bPayProgress = true;
                     //totalLbl.Text = (Convert.ToInt32(totalLbl.Text) - iCash).ToString();
+                    
                     mv.m_nReceiveMoney += iCash;
+                    restCash = mv.m_nTotalMoney - mv.m_nReceiveMoney;
                     receiveLbl.Text = calcFunction.getCommaString(mv.m_nReceiveMoney);
+                    restLbl.Text = calcFunction.getCommaString(restCash);
                     sendDataGrid();
                 }
                 else // 결제 가능
                 {
                     mv.m_nReceiveMoney += iCash;
                     receiveLbl.Text = calcFunction.getCommaString(mv.m_nReceiveMoney);
+                    restLbl.Text = "";
                     //FrmReceipt dlg = new FrmReceipt(this, receiveMoney, totalMoney); //메인 폼과 받은돈이 얼마인지 넘겨줌
                     //dlg.ShowDialog();
+                    
                     saveStatus(1, mv.m_nReceiveMoney);
                     Window1 wpfwindow = new Window1(getDataGrid());
                     ElementHost.EnableModelessKeyboardInterop(wpfwindow);
@@ -524,6 +542,7 @@ namespace PosProject
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void admin()
         {
             FrmLogin dlg = new FrmLogin();
@@ -539,11 +558,12 @@ namespace PosProject
                 allCancelBtn.Visible = true;
                 recoverBtn.Visible = true;
                 logOutBtn.Visible = true;
+                tableLayoutPanel2.Visible = true;
                 adminBtn.Visible = false;
                 adminOffBtn.Visible = false;
             }
         }
-
+        
         private void selectCancel()
         {
             try
@@ -614,7 +634,6 @@ namespace PosProject
                         default:
                             break;
                     }
-
                 }
                 if (itemGrid.Rows.Count == 0)
                 {
@@ -650,6 +669,13 @@ namespace PosProject
             dlg.FormSendEvent += new FrmCancel.FormSendDataHandler(getCancelReason);
             dlg.ShowDialog();
         }
+
+        private void openTran()
+        {
+            FrmTranInq dlg = new FrmTranInq();
+            dlg.ShowDialog();
+        }
+
 
         private void getCancelReason(int reason)
         {
@@ -687,7 +713,7 @@ namespace PosProject
                 string strData = "";
                 List<sItem> tList = new List<sItem>();
                 strData += (status.ToString() + ",");
-                strData += (DateTime.Now.ToString("HH:mm:ss") + ",");
+                strData += (DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss") + ",");
                 strData += (pos.m_sPosId + ",");
                 strData += (tranList.Count.ToString() + ",");
                 for (int i = 0; i < itemGrid.Rows.Count; i++)
@@ -778,7 +804,7 @@ namespace PosProject
                 Dictionary<string, int> td = new Dictionary<string, int>();
                 foreach (var i in tempT.m_lItem)
                 {
-                    if (i.sTranItemStatus == "1")
+                    if (i.sTranItemStatus == tran.s_itemStatusCancel.ToString())
                     {
                         continue;
                     }

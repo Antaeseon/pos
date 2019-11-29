@@ -57,13 +57,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.receiveLbl = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.restLbl = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tranBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.itemGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(303, 324);
+            this.button1.Location = new System.Drawing.Point(304, 339);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(78, 32);
@@ -88,7 +93,7 @@
             this.grdItemTotal,
             this.cancelFlag});
             this.itemGrid.GridColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.itemGrid.Location = new System.Drawing.Point(42, 48);
+            this.itemGrid.Location = new System.Drawing.Point(39, 73);
             this.itemGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.itemGrid.MultiSelect = false;
             this.itemGrid.Name = "itemGrid";
@@ -153,9 +158,9 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 2);
+            this.label1.Location = new System.Drawing.Point(4, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 15);
+            this.label1.Size = new System.Drawing.Size(79, 15);
             this.label1.TabIndex = 5;
             this.label1.Text = "합계금액";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -164,9 +169,9 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 21);
+            this.label2.Location = new System.Drawing.Point(4, 18);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 15);
+            this.label2.Size = new System.Drawing.Size(79, 15);
             this.label2.TabIndex = 6;
             this.label2.Text = "할인금액";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -175,9 +180,9 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 60);
+            this.label3.Location = new System.Drawing.Point(4, 52);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 15);
+            this.label3.Size = new System.Drawing.Size(79, 15);
             this.label3.TabIndex = 7;
             this.label3.Text = "결제금액";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -186,9 +191,9 @@
             // 
             this.priceLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.priceLbl.AutoSize = true;
-            this.priceLbl.Location = new System.Drawing.Point(91, 2);
+            this.priceLbl.Location = new System.Drawing.Point(90, 1);
             this.priceLbl.Name = "priceLbl";
-            this.priceLbl.Size = new System.Drawing.Size(107, 15);
+            this.priceLbl.Size = new System.Drawing.Size(106, 15);
             this.priceLbl.TabIndex = 8;
             this.priceLbl.Text = "0";
             this.priceLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -197,9 +202,9 @@
             // 
             this.discountLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.discountLbl.AutoSize = true;
-            this.discountLbl.Location = new System.Drawing.Point(91, 21);
+            this.discountLbl.Location = new System.Drawing.Point(90, 18);
             this.discountLbl.Name = "discountLbl";
-            this.discountLbl.Size = new System.Drawing.Size(107, 15);
+            this.discountLbl.Size = new System.Drawing.Size(106, 15);
             this.discountLbl.TabIndex = 9;
             this.discountLbl.Text = "0";
             this.discountLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -208,16 +213,16 @@
             // 
             this.totalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.totalLbl.AutoSize = true;
-            this.totalLbl.Location = new System.Drawing.Point(91, 60);
+            this.totalLbl.Location = new System.Drawing.Point(90, 52);
             this.totalLbl.Name = "totalLbl";
-            this.totalLbl.Size = new System.Drawing.Size(107, 15);
+            this.totalLbl.Size = new System.Drawing.Size(106, 15);
             this.totalLbl.TabIndex = 10;
             this.totalLbl.Text = "0";
             this.totalLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // payBtn
             // 
-            this.payBtn.Location = new System.Drawing.Point(303, 371);
+            this.payBtn.Location = new System.Drawing.Point(304, 393);
             this.payBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.payBtn.Name = "payBtn";
             this.payBtn.Size = new System.Drawing.Size(78, 32);
@@ -228,7 +233,7 @@
             // 
             // inquireItemBtn
             // 
-            this.inquireItemBtn.Location = new System.Drawing.Point(401, 324);
+            this.inquireItemBtn.Location = new System.Drawing.Point(402, 339);
             this.inquireItemBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.inquireItemBtn.Name = "inquireItemBtn";
             this.inquireItemBtn.Size = new System.Drawing.Size(78, 32);
@@ -239,7 +244,7 @@
             // 
             // inquireDisBtn
             // 
-            this.inquireDisBtn.Location = new System.Drawing.Point(401, 371);
+            this.inquireDisBtn.Location = new System.Drawing.Point(402, 393);
             this.inquireDisBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.inquireDisBtn.Name = "inquireDisBtn";
             this.inquireDisBtn.Size = new System.Drawing.Size(78, 32);
@@ -263,43 +268,43 @@
             // 
             // selectCancelBtn
             // 
-            this.selectCancelBtn.Location = new System.Drawing.Point(42, 12);
+            this.selectCancelBtn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.selectCancelBtn.Location = new System.Drawing.Point(3, 6);
             this.selectCancelBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.selectCancelBtn.Name = "selectCancelBtn";
-            this.selectCancelBtn.Size = new System.Drawing.Size(91, 30);
+            this.selectCancelBtn.Size = new System.Drawing.Size(90, 30);
             this.selectCancelBtn.TabIndex = 16;
             this.selectCancelBtn.Text = "지정취소";
             this.selectCancelBtn.UseVisualStyleBackColor = true;
-            this.selectCancelBtn.Visible = false;
             this.selectCancelBtn.Click += new System.EventHandler(this.btnClick);
             // 
             // allCancelBtn
             // 
-            this.allCancelBtn.Location = new System.Drawing.Point(172, 12);
+            this.allCancelBtn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.allCancelBtn.Location = new System.Drawing.Point(99, 6);
             this.allCancelBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.allCancelBtn.Name = "allCancelBtn";
-            this.allCancelBtn.Size = new System.Drawing.Size(91, 30);
+            this.allCancelBtn.Size = new System.Drawing.Size(90, 30);
             this.allCancelBtn.TabIndex = 17;
             this.allCancelBtn.Text = "일괄취소";
             this.allCancelBtn.UseVisualStyleBackColor = true;
-            this.allCancelBtn.Visible = false;
             this.allCancelBtn.Click += new System.EventHandler(this.btnClick);
             // 
             // recoverBtn
             // 
-            this.recoverBtn.Location = new System.Drawing.Point(302, 12);
+            this.recoverBtn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.recoverBtn.Location = new System.Drawing.Point(195, 6);
             this.recoverBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.recoverBtn.Name = "recoverBtn";
-            this.recoverBtn.Size = new System.Drawing.Size(91, 30);
+            this.recoverBtn.Size = new System.Drawing.Size(90, 30);
             this.recoverBtn.TabIndex = 18;
             this.recoverBtn.Text = "보류/복원";
             this.recoverBtn.UseVisualStyleBackColor = true;
-            this.recoverBtn.Visible = false;
             this.recoverBtn.Click += new System.EventHandler(this.btnClick);
             // 
             // adminBtn1
             // 
-            this.adminBtn1.Location = new System.Drawing.Point(-2, 429);
+            this.adminBtn1.Location = new System.Drawing.Point(-2, 454);
             this.adminBtn1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.adminBtn1.Name = "adminBtn1";
             this.adminBtn1.Size = new System.Drawing.Size(89, 26);
@@ -309,7 +314,7 @@
             // 
             // adminBtn2
             // 
-            this.adminBtn2.Location = new System.Drawing.Point(461, 429);
+            this.adminBtn2.Location = new System.Drawing.Point(463, 454);
             this.adminBtn2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.adminBtn2.Name = "adminBtn2";
             this.adminBtn2.Size = new System.Drawing.Size(89, 26);
@@ -319,14 +324,14 @@
             // 
             // logOutBtn
             // 
-            this.logOutBtn.Location = new System.Drawing.Point(432, 12);
+            this.logOutBtn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.logOutBtn.Location = new System.Drawing.Point(387, 6);
             this.logOutBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.logOutBtn.Name = "logOutBtn";
-            this.logOutBtn.Size = new System.Drawing.Size(91, 30);
+            this.logOutBtn.Size = new System.Drawing.Size(90, 30);
             this.logOutBtn.TabIndex = 21;
             this.logOutBtn.Text = "관리자Off";
             this.logOutBtn.UseVisualStyleBackColor = true;
-            this.logOutBtn.Visible = false;
             this.logOutBtn.Click += new System.EventHandler(this.btnClick);
             // 
             // adminOffBtn
@@ -346,9 +351,9 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 40);
+            this.label4.Location = new System.Drawing.Point(4, 35);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 15);
+            this.label4.Size = new System.Drawing.Size(79, 15);
             this.label4.TabIndex = 23;
             this.label4.Text = "받은금액";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -357,9 +362,9 @@
             // 
             this.receiveLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.receiveLbl.AutoSize = true;
-            this.receiveLbl.Location = new System.Drawing.Point(91, 40);
+            this.receiveLbl.Location = new System.Drawing.Point(90, 35);
             this.receiveLbl.Name = "receiveLbl";
-            this.receiveLbl.Size = new System.Drawing.Size(107, 15);
+            this.receiveLbl.Size = new System.Drawing.Size(106, 15);
             this.receiveLbl.TabIndex = 24;
             this.receiveLbl.Text = "0";
             this.receiveLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -371,6 +376,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.42857F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.57143F));
+            this.tableLayoutPanel1.Controls.Add(this.restLbl, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.receiveLbl, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
@@ -379,15 +386,70 @@
             this.tableLayoutPanel1.Controls.Add(this.priceLbl, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.discountLbl, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.totalLbl, 1, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(41, 324);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(42, 339);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.32467F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.32467F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(202, 79);
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 86);
             this.tableLayoutPanel1.TabIndex = 25;
+            // 
+            // restLbl
+            // 
+            this.restLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.restLbl.AutoSize = true;
+            this.restLbl.Location = new System.Drawing.Point(90, 69);
+            this.restLbl.Name = "restLbl";
+            this.restLbl.Size = new System.Drawing.Size(106, 15);
+            this.restLbl.TabIndex = 26;
+            this.restLbl.Text = "0";
+            this.restLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(4, 69);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 15);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "남은금액";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 5;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.tranBtn, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.selectCancelBtn, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.allCancelBtn, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.recoverBtn, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.logOutBtn, 4, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(42, 14);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(480, 43);
+            this.tableLayoutPanel2.TabIndex = 26;
+            // 
+            // tranBtn
+            // 
+            this.tranBtn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tranBtn.Location = new System.Drawing.Point(291, 6);
+            this.tranBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tranBtn.Name = "tranBtn";
+            this.tranBtn.Size = new System.Drawing.Size(90, 30);
+            this.tranBtn.TabIndex = 22;
+            this.tranBtn.Text = "거래조회";
+            this.tranBtn.UseVisualStyleBackColor = true;
+            this.tranBtn.Click += new System.EventHandler(this.btnClick);
             // 
             // Main
             // 
@@ -395,15 +457,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(550, 452);
+            this.ClientSize = new System.Drawing.Size(553, 479);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.adminOffBtn);
-            this.Controls.Add(this.logOutBtn);
             this.Controls.Add(this.adminBtn2);
             this.Controls.Add(this.adminBtn1);
-            this.Controls.Add(this.recoverBtn);
-            this.Controls.Add(this.allCancelBtn);
-            this.Controls.Add(this.selectCancelBtn);
             this.Controls.Add(this.adminBtn);
             this.Controls.Add(this.inquireDisBtn);
             this.Controls.Add(this.inquireItemBtn);
@@ -422,6 +481,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.itemGrid)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -456,6 +516,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label receiveLbl;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        public System.Windows.Forms.Label restLbl;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button tranBtn;
     }
 }
 

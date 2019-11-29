@@ -19,7 +19,6 @@ namespace Client
         TcpClient clientSocket = new TcpClient();
         NetworkStream stream = default(NetworkStream);
         posInfo ps = new posInfo();
-        string message = string.Empty;
         public static bool isConnected { get; set; }
         public Client()
         {
@@ -50,6 +49,7 @@ namespace Client
                 }
             }
         }
+
         private void clear()
         {
             try
@@ -63,21 +63,23 @@ namespace Client
                     discountLbl.Text = "0";
                     receiveLbl.Text = "0";
                     totalLbl.Text = "0";
+                    restLbl.Text = "";
                 }));
             }
             catch (Exception ex)
             {
             }
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            clear();
             this.cItemGrid.Font = new System.Drawing.Font("tahoma", 10, System.Drawing.FontStyle.Regular);
             cItemGrid.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             cItemGrid.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             cItemGrid.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            cItemGrid.Columns[3].DefaultCellStyle.Format = "N0";
-            cItemGrid.Columns[4].DefaultCellStyle.Format = "N0";
         }
+
         private void GetMessage()
         {
             try
@@ -140,6 +142,12 @@ namespace Client
                     discountLbl.Text = calcFunction.getCommaString(Convert.ToInt16(result[discountIndex]));
                     receiveLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[receiveIndex]));
                     totalLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[totalIndex]));
+                    restLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[totalIndex]) 
+                        - Convert.ToInt32(result[receiveIndex]));
+                    if (restLbl.Text == totalLbl.Text)
+                    {
+                        restLbl.Text = "";
+                    }
                 }));
 
                 if (cItemGrid.Rows.Count == 0)
@@ -159,6 +167,14 @@ namespace Client
                     Close();
                 }));
             }
+        }
+
+        private void cItemGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            cItemGrid.Columns[3].DefaultCellStyle.Format = "N0";
+            cItemGrid.Columns[4].DefaultCellStyle.Format = "N0";
+            cItemGrid.Columns[3].ValueType = typeof(string);
+            cItemGrid.Columns[4].ValueType = typeof(string);
         }
     }
 }

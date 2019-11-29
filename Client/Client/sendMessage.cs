@@ -45,6 +45,5 @@ namespace Client
         /// 보류된 아이템
         /// </summary>
         public const int s_hold = 1;
-
     }
 }

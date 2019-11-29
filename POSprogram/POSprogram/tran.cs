@@ -24,7 +24,6 @@ namespace PosProject
     }
     class tran
     {
-
         private int nStatus;
         private string sDate;
         private string sPosId;

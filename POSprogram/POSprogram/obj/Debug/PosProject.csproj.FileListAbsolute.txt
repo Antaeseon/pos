@@ -121,3 +121,4 @@ C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.csproj
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.csproj.CopyComplete
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.exe
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.pdb
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.FrmTranInq.resources
