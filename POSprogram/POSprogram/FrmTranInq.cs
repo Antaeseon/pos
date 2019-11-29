@@ -38,7 +38,8 @@ namespace PosProject
                     else if (tranList[i].m_nStatus == tran.s_tranFinish)
                     {
                         tranStatusString = "결제";
-                    }else if (tranList[i].m_nStatus == tran.s_tranCancel)
+                    }
+                    else if (tranList[i].m_nStatus == tran.s_tranCancel)
                     {
                         tranStatusString = "취소";
                     }
@@ -49,18 +50,35 @@ namespace PosProject
                     }
                     tranGrid.Rows.Add(tranStatusString, tranList[i].m_sDate, tranList[i].m_sPosId, tranList[i].m_sTradeId);
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void FrmTranInq_Load(object sender, EventArgs e)
         {
             init();
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                if (checkedListBox1.GetItemChecked(i))
+                {
+                    for(int j = 0; j < tranGrid.Rows.Count; j++)
+                    {
+
+                    }
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            tranGrid.Rows[0].Visible = false;
         }
     }
 }

@@ -20,7 +20,6 @@ namespace Client
             return Convert.ToInt32(t);
         }
 
-
         static public string getCommaString(int num)
         {
             string t = string.Format("{0:#,##0}", num);
