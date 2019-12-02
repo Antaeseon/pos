@@ -28,7 +28,7 @@ namespace PosProject
                 checkedListBox1.SetItemChecked(2, true);
                 checkedListBox1.SetItemChecked(3, true);
 
-                for(int i = 0; i < tranList.Count; i++)
+                for (int i = 0; i < tranList.Count; i++)
                 {
                     string tranStatusString = "";
                     if (tranList[i].m_nStatus == tran.s_tranHold)
@@ -64,14 +64,27 @@ namespace PosProject
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            string[] tranGridStatus = new string[] { "보류", "결제", "취소", "복원" };
+            Dictionary<string, bool> dt = new Dictionary<string, bool>();
+            dt.Add("보류", false);
+            dt.Add("결제", false);
+            dt.Add("취소", false);
+            dt.Add("복원", false);
+            int[] indexes = checkedListBox1.CheckedIndices.Cast<int>().ToArray();
+            for(int i = 0; i < indexes.Length; i++)
             {
-                if (checkedListBox1.GetItemChecked(i))
+                dt[tranGridStatus[indexes[i]]] = true;
+            }
+            for (int j = 0; j < tranGrid.Rows.Count; j++)
+            {
+                if (dt[tranGrid.Rows[j].Cells[0].Value.ToString()])
                 {
-                    for(int j = 0; j < tranGrid.Rows.Count; j++)
-                    {
+                    tranGrid.Rows[j].Visible = true;
+                }
+                else
+                {
+                    tranGrid.Rows[j].Visible = false;
 
-                    }
                 }
             }
         }
