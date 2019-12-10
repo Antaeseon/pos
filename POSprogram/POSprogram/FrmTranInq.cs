@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WpfCustomControlLibrary1;
 
 namespace PosProject
 {
@@ -48,7 +49,7 @@ namespace PosProject
                     {
                         tranStatusString = "복원";
                     }
-                    tranGrid.Rows.Add(tranStatusString, tranList[i].m_sDate, tranList[i].m_sPosId, tranList[i].m_sTradeId);
+                    tranGrid.Rows.Add(tranStatusString, tranList[i].m_sDate.Substring(0, 10), tranList[i].m_sPosId, tranList[i].m_sTradeId);
                 }
             }
             catch (Exception ex)
@@ -60,9 +61,56 @@ namespace PosProject
         private void FrmTranInq_Load(object sender, EventArgs e)
         {
             init();
+            initDatePicker.Value = DateTime.Today.AddMonths(-1);
+            endDatePicker.Value = DateTime.Today;
+        }
+
+        private void btn_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            string s = btn.Text;
+
+            switch (s)
+            {
+                default:
+                    break;
+            }
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dateFilter();
+            checkFilter();
+        }
+
+        private void dateFilter()
+        {
+            DateTime sd = initDatePicker.Value;
+            DateTime ed = endDatePicker.Value;
+            string startDate = sd.ToString("yyyy-MM-dd");
+            string endDate = ed.ToString("yyyy-MM-dd");
+            if(DateTime.Parse(startDate) > DateTime.Parse(endDate)){
+                MessageBox.Show("날짜 설정을 다시 해 주세요");
+                initDatePicker.Value = DateTime.Today.AddMonths(-1);
+                endDatePicker.Value = DateTime.Today;
+                return;
+            }
+
+            for (int i = 0; i < tranGrid.Rows.Count; i++)
+            {
+                if (DateTime.Parse(startDate) <= DateTime.Parse(tranGrid.Rows[i].Cells[1].Value.ToString())
+                 && DateTime.Parse(endDate) >= DateTime.Parse(tranGrid.Rows[i].Cells[1].Value.ToString()))
+                {
+                    tranGrid.Rows[i].Visible = true;
+                }
+                else
+                {
+                    tranGrid.Rows[i].Visible = false;
+                }
+            }
+        }
+
+        private void checkFilter()
         {
             string[] tranGridStatus = new string[] { "보류", "결제", "취소", "복원" };
             Dictionary<string, bool> dt = new Dictionary<string, bool>();
@@ -71,12 +119,16 @@ namespace PosProject
             dt.Add("취소", false);
             dt.Add("복원", false);
             int[] indexes = checkedListBox1.CheckedIndices.Cast<int>().ToArray();
-            for(int i = 0; i < indexes.Length; i++)
+            for (int i = 0; i < indexes.Length; i++)
             {
                 dt[tranGridStatus[indexes[i]]] = true;
             }
             for (int j = 0; j < tranGrid.Rows.Count; j++)
             {
+                if (tranGrid.Rows[j].Visible == false)
+                    continue;
+
+
                 if (dt[tranGrid.Rows[j].Cells[0].Value.ToString()])
                 {
                     tranGrid.Rows[j].Visible = true;
@@ -84,14 +136,33 @@ namespace PosProject
                 else
                 {
                     tranGrid.Rows[j].Visible = false;
-
                 }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void initDatePicker_ValueChanged(object sender, EventArgs e)
         {
-            tranGrid.Rows[0].Visible = false;
+            dateFilter();
+            checkFilter();
+        }
+
+        private void endDatePicker_ValueChanged(object sender, EventArgs e)
+        {
+            dateFilter();
+            checkFilter();
+        }
+
+        private void tranGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex.ToString() == "-1")
+            {
+                return;
+            }
+
+            int ItemIndex = tranList.FindIndex(it => 
+            it.m_sTradeId == tranGrid.Rows[e.RowIndex].Cells[3].Value.ToString());
+            Window1 wpfwindow = new Window1("tran", ItemIndex);
+            wpfwindow.Show();
         }
     }
 }

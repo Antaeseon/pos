@@ -49,10 +49,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="calcFunction.cs" />
+    <Compile Include="fileReadFunction.cs" />
     <Compile Include="sendMessage.cs" />
     <Compile Include="receipt.xaml.cs">
       <DependentUpon>receipt.xaml</DependentUpon>
     </Compile>
+    <Compile Include="singleItem.cs" />
+    <Compile Include="tran.cs" />
     <Compile Include="Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>

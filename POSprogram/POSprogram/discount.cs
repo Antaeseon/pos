@@ -19,7 +19,6 @@ namespace PosProject
         private int nCategory;
         private int nDiscount;
 
-
         /// <summary>
         /// 할인행사 Id
         /// </summary>
@@ -71,7 +70,5 @@ namespace PosProject
         /// 할인양
         /// </summary>
         public const int c_discount = 2;
-
-
     }
 }

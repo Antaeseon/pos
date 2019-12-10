@@ -21,19 +21,108 @@ namespace WpfCustomControlLibrary1
     public partial class Window1 : Window
     {
         private string message;
-        public Window1(string _message)
+        private List<tran> tranList = new List<tran>();
+        private List<singleItem> singleList = new List<singleItem>();
+        private tran tr = new tran();
+        private int tranIndex;
+        public Window1(string _message, int st = -1)
         {
             InitializeComponent();
+            tranIndex = st;
             message = _message;
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            DisplayText(message);
+            if (tranIndex == -1)
+            {
+                DisplayText(message);
+                return;
+            }
+            try
+            {
+                tranList = fileReadFunction.getTranList();
+                tr = tranList[tranIndex];
+                singleList = fileReadFunction.getSingleItemList();
+                DisplayText("tran");
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
                 
         private void DisplayText(string text)
         {
+            if (tranIndex != -1)
+            {
+                string _line = "상품명".PadRight(13, ' ') + "수량".PadRight(12, ' ') + "단가".PadRight(13, ' ') + "합계".PadRight(12, ' ') + "\n";
+                richTextBox.AppendText(_line);
+
+                for (int i = 0; i < tr.m_lItem.Count; i++)
+                {
+                    int nextItemIndex = i * 6;
+
+                    if(tr.m_lItem[i].sTranItemStatus== sendMessage.s_hold.ToString())
+                    {
+                        continue;
+                    }
+                    //int iNum = Convert.ToInt32(result[nextItemIndex + sendMessage.c_itemNum]);
+                    //int iPrice = Convert.ToInt32(result[nextItemIndex + sendMessage.c_itemPrice]);
+                    //int itotal = iNum * iPrice;
+                    int sIndex=singleList.FindIndex(it => it.m_sItemId == tr.m_lItem[i].sTranItemId);
+                    int iPrice = singleList[sIndex].m_nItemPrice;
+                    int itotal = tr.m_lItem[i].nTranItemNum * iPrice;
+                    _line = singleList[sIndex].m_sItemName.PadRight(14, ' ')
+                        + tr.m_lItem[i].nTranItemNum.ToString().PadLeft(5, ' ') +
+                        calcFunction.getCommaString(Convert.ToInt32(iPrice)).PadLeft(14, ' ') +
+                        calcFunction.getCommaString(itotal).PadLeft(14, ' ') + "\n";
+                    richTextBox.AppendText(_line);
+                }
+                richTextBox.AppendText("==================================================\n");
+                if (tr.m_nStatus == tran.s_tranHold)
+                {
+                    _line = "거래보류상품\n\n";
+                    richTextBox.AppendText(_line);
+                }
+                else if (tr.m_nStatus == tran.s_tranFinish)
+                {
+                    _line = "거래완료상품\n\n";
+                    richTextBox.AppendText(_line);
+                }
+                else if (tr.m_nStatus == tran.s_tranCancel)
+                {
+                    _line = "거래취소상품\n\n";
+                    richTextBox.AppendText(_line);
+                }
+                else if (tr.m_nStatus == tran.s_tranRecover)
+                {
+                    _line = "거래복원상품\n\n";
+                    richTextBox.AppendText(_line);
+                }
+                if (tr.m_nStatus == tran.s_tranCancel)
+                {
+                    return;
+                }
+                else if (tr.m_nStatus == tran.s_tranRecover)
+                {
+                    return;
+                }
+
+                _line = "합계 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nPriceMoney).PadLeft(13, ' ') + "\n";
+                richTextBox.AppendText(_line);
+
+                _line = "할인 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nDiscountMoney).PadLeft(13, ' ')
+                    + " 받은 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nReceiveMoney).PadLeft(13, ' ') + "\n";
+                richTextBox.AppendText(_line);
+
+                _line = "결제 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nTotalMoney).PadLeft(13, ' ')
+                  + " 거스름 돈 :".PadRight(9, ' ') + calcFunction.getCommaString((tr.m_nReceiveMoney)
+                  - Convert.ToInt32(tr.m_nTotalMoney)).PadLeft(13, ' ') + "\n";
+                richTextBox.AppendText(_line);
+                return;
+            }
+
             try
             {
                 string _line = "상품명".PadRight(13, ' ') + "수량".PadRight(12, ' ') + "단가".PadRight(13, ' ') + "합계".PadRight(12, ' ') + "\n";

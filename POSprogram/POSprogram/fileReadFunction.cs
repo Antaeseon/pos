@@ -180,9 +180,11 @@ namespace PosProject
                 sItem tempS;
                 char sep = ',';
                 string[] result = line.Split(sep);
-                int resReceiveMoneyIndex = result.Length - 2;
+                int resReceiveMoneyIndex = result.Length - 4;
+                int resDiscountMoneyIndex = result.Length - 3;
+                int resPriceMoneyIndex = result.Length - 2;
                 int resTotalMoneyIndex = result.Length - 1;
-                for (int i = 4; i < result.Length - 2; i++)
+                for (int i = 4; i < result.Length - 4; i++)
                 {
                     tempS.sTranItemId = result[i++];
                     tempS.nTranItemNum = Convert.ToInt32(result[i++]);
@@ -198,6 +200,8 @@ namespace PosProject
                     m_sTradeId = result[tran.c_tradeId],
                     m_lItem = tItemList,
                     m_nReceiveMoney = Convert.ToInt32(result[resReceiveMoneyIndex]),
+                    m_nPriceMoney = Convert.ToInt32(result[resPriceMoneyIndex]),
+                    m_nDiscountMoney = Convert.ToInt32(result[resDiscountMoneyIndex]),
                     m_nTotalMoney = Convert.ToInt32(result[resTotalMoneyIndex])
                 });
             }

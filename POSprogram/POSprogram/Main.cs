@@ -729,6 +729,8 @@ namespace PosProject
                     });
                 }
                 strData += (receiveMoney.ToString() + ",");
+                strData += (calcFunction.getIntNumber(discountLbl.Text).ToString() + ",");
+                strData += (calcFunction.getIntNumber(priceLbl.Text).ToString() + ",");
                 strData += (mv.m_nTotalMoney.ToString() + "\n");
                 streamWriter.Write(strData);
                 tranList.Add(new tran()
@@ -739,6 +741,8 @@ namespace PosProject
                     m_sTradeId = tranList.Count.ToString(),
                     m_lItem = tList,
                     m_nReceiveMoney = receiveMoney,
+                    m_nDiscountMoney = Convert.ToInt32(calcFunction.getIntNumber(discountLbl.Text).ToString()),
+                    m_nPriceMoney = Convert.ToInt32(calcFunction.getIntNumber(priceLbl.Text).ToString()),
                     m_nTotalMoney = mv.m_nTotalMoney
                 });
                 //스트림 Writer 닫아 주세요.
@@ -750,7 +754,6 @@ namespace PosProject
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void recover()
         {
             if (mv.m_bPayProgress)
@@ -860,7 +863,7 @@ namespace PosProject
                 {
                     if (inIndex++ == index)
                     {
-                        streamWriter.WriteLine("4" + line.Substring(1));
+                        streamWriter.WriteLine("3" + line.Substring(1));
                     }
                     else
                     {
