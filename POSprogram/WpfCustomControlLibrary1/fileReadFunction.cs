@@ -9,7 +9,6 @@ namespace WpfCustomControlLibrary1
 {
     class fileReadFunction
     {
-
         /// <summary>
         /// 상품 마스터에있는 List 반환
         /// </summary>
@@ -25,7 +24,7 @@ namespace WpfCustomControlLibrary1
             {
                 char sep = ',';
                 string[] result = line.Split(sep);
-
+            
                 for (int i = 0; i < result.Length; i++)
                 {
                     if (result[i] == "")
@@ -33,7 +32,7 @@ namespace WpfCustomControlLibrary1
                         throw new Exception("item 마스터 파일 문자열에 공백이 있습니다.");
                     }
                 }
-
+                
                 if (result.Length != 3)
                 {
                     throw new Exception("상품 마스터 파일 문자열이 잘못되었습니다.");
@@ -62,8 +61,6 @@ namespace WpfCustomControlLibrary1
             return itemList;
         }
 
-
-
         public static List<tran> getTranList()
         {
             List<tran> tranList = new List<tran>();
@@ -87,7 +84,7 @@ namespace WpfCustomControlLibrary1
                     tempS.sTranItemStatus = result[i];
                     tItemList.Add(tempS);
                 }
-
+                
                 tranList.Add(new tran()
                 {
                     m_nStatus = Convert.ToInt32(result[tran.c_status]),

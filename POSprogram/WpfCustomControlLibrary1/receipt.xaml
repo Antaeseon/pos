@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCustomControlLibrary1"
         mc:Ignorable="d"
-        Title="Receipt" Height="515.948" Width="388.193" WindowStartupLocation="CenterScreen">
+        Title="영수증" Height="512.348" Width="370.193" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
     <Grid Loaded="Grid_Loaded" Margin="0,0,3.6,20">
-        <RichTextBox x:Name="richTextBox" Margin="10,10,10,-0.2" Block.TextAlignment="Center" FontSize="20" IsReadOnly="True" FontFamily="Consolas">
+        <RichTextBox x:Name="richTextBox" Margin="10,10,10,-0.2" Block.TextAlignment="Center" FontSize="20" IsReadOnly="True" FontFamily="Consolas" PreviewMouseDown="RichTextBox_PreviewMouseDown">
             <FlowDocument>
                 <Paragraph LineHeight="6">
                     <Run/>

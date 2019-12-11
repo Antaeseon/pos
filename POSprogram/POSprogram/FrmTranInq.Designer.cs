@@ -40,13 +40,14 @@
             this.initDatePicker = new System.Windows.Forms.DateTimePicker();
             this.endDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
+            this.inquireBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tranGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 253);
+            this.label1.Location = new System.Drawing.Point(28, 219);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 3;
@@ -65,7 +66,6 @@
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(248, 84);
             this.checkedListBox1.TabIndex = 5;
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -137,28 +137,36 @@
             // 
             // initDatePicker
             // 
-            this.initDatePicker.Location = new System.Drawing.Point(31, 292);
+            this.initDatePicker.Location = new System.Drawing.Point(31, 258);
             this.initDatePicker.Name = "initDatePicker";
             this.initDatePicker.Size = new System.Drawing.Size(218, 25);
             this.initDatePicker.TabIndex = 10;
-            this.initDatePicker.ValueChanged += new System.EventHandler(this.initDatePicker_ValueChanged);
             // 
             // endDatePicker
             // 
-            this.endDatePicker.Location = new System.Drawing.Point(31, 338);
+            this.endDatePicker.Location = new System.Drawing.Point(31, 304);
             this.endDatePicker.Name = "endDatePicker";
             this.endDatePicker.Size = new System.Drawing.Size(218, 25);
             this.endDatePicker.TabIndex = 11;
-            this.endDatePicker.ValueChanged += new System.EventHandler(this.endDatePicker_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(126, 320);
+            this.label4.Location = new System.Drawing.Point(126, 286);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(18, 15);
             this.label4.TabIndex = 12;
             this.label4.Text = "~";
+            // 
+            // inquireBtn
+            // 
+            this.inquireBtn.Location = new System.Drawing.Point(79, 382);
+            this.inquireBtn.Name = "inquireBtn";
+            this.inquireBtn.Size = new System.Drawing.Size(97, 29);
+            this.inquireBtn.TabIndex = 13;
+            this.inquireBtn.Text = "조회";
+            this.inquireBtn.UseVisualStyleBackColor = true;
+            this.inquireBtn.Click += new System.EventHandler(this.Btn_Click);
             // 
             // FrmTranInq
             // 
@@ -166,6 +174,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(811, 526);
+            this.Controls.Add(this.inquireBtn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.endDatePicker);
             this.Controls.Add(this.initDatePicker);
@@ -198,5 +207,6 @@
         private System.Windows.Forms.DateTimePicker initDatePicker;
         private System.Windows.Forms.DateTimePicker endDatePicker;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button inquireBtn;
     }
 }

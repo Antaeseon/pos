@@ -48,21 +48,17 @@ namespace WpfCustomControlLibrary1
             }
             catch (Exception ex)
             {
-
             }
         }
-                
         private void DisplayText(string text)
         {
             if (tranIndex != -1)
             {
-                string _line = "상품명".PadRight(13, ' ') + "수량".PadRight(12, ' ') + "단가".PadRight(13, ' ') + "합계".PadRight(12, ' ') + "\n";
+                string _line = "상품명".PadRight(13, ' ') + "수량".PadRight(12, ' ') + "단가".PadRight(13, ' ') + "금액".PadRight(12, ' ') + "\n";
                 richTextBox.AppendText(_line);
-
                 for (int i = 0; i < tr.m_lItem.Count; i++)
                 {
                     int nextItemIndex = i * 6;
-
                     if(tr.m_lItem[i].sTranItemStatus== sendMessage.s_hold.ToString())
                     {
                         continue;
@@ -79,11 +75,13 @@ namespace WpfCustomControlLibrary1
                         calcFunction.getCommaString(itotal).PadLeft(14, ' ') + "\n";
                     richTextBox.AppendText(_line);
                 }
+                
                 richTextBox.AppendText("==================================================\n");
                 if (tr.m_nStatus == tran.s_tranHold)
                 {
                     _line = "거래보류상품\n\n";
                     richTextBox.AppendText(_line);
+                    return;
                 }
                 else if (tr.m_nStatus == tran.s_tranFinish)
                 {
@@ -92,23 +90,33 @@ namespace WpfCustomControlLibrary1
                 }
                 else if (tr.m_nStatus == tran.s_tranCancel)
                 {
-                    _line = "거래취소상품\n\n";
+                    _line = "거래취소상품\n";
+                    string cancelReason="";
                     richTextBox.AppendText(_line);
+                    if (tr.m_nReceiveMoney == 1)
+                    {
+                        cancelReason = "제품결함";
+                    }
+                    else if (tr.m_nReceiveMoney == 2)
+                    {
+                        cancelReason = "한도초과";
+                    }else if(tr.m_nReceiveMoney == 3)
+                    {
+                        cancelReason = "재결제";
+                    }else if (tr.m_nReceiveMoney == 4)
+                    {
+                        cancelReason = "단순변심";
+                    }
+                    _line = "취소 사유 : " + cancelReason;
+                    richTextBox.AppendText(_line);
+                    return;
                 }
                 else if (tr.m_nStatus == tran.s_tranRecover)
                 {
                     _line = "거래복원상품\n\n";
                     richTextBox.AppendText(_line);
-                }
-                if (tr.m_nStatus == tran.s_tranCancel)
-                {
                     return;
                 }
-                else if (tr.m_nStatus == tran.s_tranRecover)
-                {
-                    return;
-                }
-
                 _line = "합계 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nPriceMoney).PadLeft(13, ' ') + "\n";
                 richTextBox.AppendText(_line);
 
@@ -122,10 +130,10 @@ namespace WpfCustomControlLibrary1
                 richTextBox.AppendText(_line);
                 return;
             }
-
+            
             try
             {
-                string _line = "상품명".PadRight(13, ' ') + "수량".PadRight(12, ' ') + "단가".PadRight(13, ' ') + "합계".PadRight(12, ' ') + "\n";
+                string _line = "상품명".PadRight(13, ' ') + "수량".PadRight(12, ' ') + "단가".PadRight(13, ' ') + "금액".PadRight(12, ' ') + "\n";
                 richTextBox.AppendText(_line);
                 string[] result = text.Split(',');
                 for (int i = 0; i < Convert.ToInt32(result[sendMessage.c_totalItemNum]); i++)
@@ -168,6 +176,11 @@ namespace WpfCustomControlLibrary1
             {
             }
         }
+    
+        private void RichTextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
 
+        }
     }
 }

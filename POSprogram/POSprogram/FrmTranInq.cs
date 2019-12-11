@@ -65,24 +65,6 @@ namespace PosProject
             endDatePicker.Value = DateTime.Today;
         }
 
-        private void btn_Click(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            string s = btn.Text;
-
-            switch (s)
-            {
-                default:
-                    break;
-            }
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            dateFilter();
-            checkFilter();
-        }
-
         private void dateFilter()
         {
             DateTime sd = initDatePicker.Value;
@@ -140,18 +122,6 @@ namespace PosProject
             }
         }
 
-        private void initDatePicker_ValueChanged(object sender, EventArgs e)
-        {
-            dateFilter();
-            checkFilter();
-        }
-
-        private void endDatePicker_ValueChanged(object sender, EventArgs e)
-        {
-            dateFilter();
-            checkFilter();
-        }
-
         private void tranGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex.ToString() == "-1")
@@ -163,6 +133,12 @@ namespace PosProject
             it.m_sTradeId == tranGrid.Rows[e.RowIndex].Cells[3].Value.ToString());
             Window1 wpfwindow = new Window1("tran", ItemIndex);
             wpfwindow.Show();
+        }
+
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            dateFilter();
+            checkFilter();
         }
     }
 }

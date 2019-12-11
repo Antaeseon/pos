@@ -52,16 +52,16 @@ namespace PosProject
             switch (s)
             {
                 case "제품결함":
-                    message(s, tran.s_itemStatusCancel);
+                    message(s, 1);
                     break;
                 case "한도초과":
-                    message(s, tran.s_itemStatusCancel);
+                    message(s, 2);
                     break;
                 case "재결제":
-                    message(s, tran.s_itemStatusCancel);
+                    message(s, 3);
                     break;
                 case "단순변심":
-                    message(s, tran.s_itemStatusCancel);
+                    message(s, 4);
                     break;
                 default:
                     FormSendEvent(0);
