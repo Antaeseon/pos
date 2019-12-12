@@ -5,35 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCustomControlLibrary1"
         mc:Ignorable="d"
-        Title="영수증" Height="512.348" Width="370.193" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
-    <Grid Loaded="Grid_Loaded" Margin="0,0,3.6,20">
-        <RichTextBox x:Name="richTextBox" Margin="10,10,10,-0.2" Block.TextAlignment="Center" FontSize="20" IsReadOnly="True" FontFamily="Consolas" PreviewMouseDown="RichTextBox_PreviewMouseDown">
-            <FlowDocument>
-                <Paragraph LineHeight="6">
-                    <Run/>
-                </Paragraph>
-                <Paragraph LineHeight="6">
-                    <Run FontWeight="Bold" FontSize="24" Text="영수증"/>
-                </Paragraph>
-                <Paragraph LineHeight="6">
-                    <Run/>
-                </Paragraph>
-                <Paragraph LineHeight="6" TextAlignment="Right">
-                    <Run FontSize="12" Text="[매장명] : 이마트성수 "/>
-                </Paragraph>
-                <Paragraph LineHeight="6" TextAlignment="Right">
-                    <Run FontSize="12" Text="[사업자] : 이마트성수 "/>
-                </Paragraph>
-                <Paragraph LineHeight="6" TextAlignment="Right">
-                    <Run FontSize="12" Text="[대표자] : 이마트성수 "/>
-                </Paragraph>
-                <Paragraph LineHeight="6" TextAlignment="Right">
-                    <Run FontSize="12" Text=""/>
-                </Paragraph>
-                <Paragraph LineHeight="6" TextAlignment="Left">
-                    <Run FontSize="12" Text="=================================================="/>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
-    </Grid>
+        Title="영수증" Height="515.948" Width="396.593" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        ResizeMode="NoResize">
+    <ScrollViewer Margin="0,0,-26.4,0" PreviewMouseDown="RichTextBox_PreviewMouseDown">
+        <Grid Loaded="Grid_Loaded" Margin="0,0,3.6,20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="240"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel HorizontalAlignment="Stretch" Margin="10,30,9.8,0" Grid.Row="0" >
+                    <Grid HorizontalAlignment="Stretch" Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Margin="10">
+                            <TextBlock  x:Name="comName" VerticalAlignment="Stretch" HorizontalAlignment="Left"  FontSize="35" FontWeight="Bold" Foreground="Black"  Margin="0,0,0,9" TextAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="10">
+                            <TextBlock x:Name="comTel" FontSize="12" Margin="2" HorizontalAlignment="Right"/>
+                            <TextBlock x:Name="comCeo" FontSize="12" Margin="2" HorizontalAlignment="Right"/>
+                            <TextBlock x:Name="comAddress" FontSize="12" Margin="2" HorizontalAlignment="Right"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid HorizontalAlignment="Stretch" Margin="10,0,20,0">
+                        <StackPanel>
+                            <TextBlock x:Name="referTxt" FontSize="12" Margin="10,20,10,10" HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid HorizontalAlignment="Stretch" Margin="10,0,20,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Margin="10,0,10,0">
+                            <TextBlock x:Name="timeBlk" VerticalAlignment="Stretch" HorizontalAlignment="Left"  FontSize="12"  Foreground="Black"  Margin="0,0,0,9" TextAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="10,0,10,0">
+                            <TextBlock x:Name="posBlk" FontSize="12" Margin="2" HorizontalAlignment="Right"/>
+                        </StackPanel>
+                    </Grid>
+
+                </StackPanel>
+                <StackPanel Grid.Row="1" Margin="10,0,10,0">
+                    <RichTextBox Cursor="Arrow"
+                                 x:Name="richTextBox" Margin="10,0,10,0" Block.TextAlignment="Center" FontSize="20" IsReadOnly="True" FontFamily="Consolas" PreviewMouseDown="RichTextBox_PreviewMouseDown">
+                        <FlowDocument>
+                            <Paragraph LineHeight="4" TextAlignment="Left">
+                                <Run FontSize="12"/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>

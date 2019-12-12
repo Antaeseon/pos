@@ -25,22 +25,42 @@ namespace WpfCustomControlLibrary1
         private List<singleItem> singleList = new List<singleItem>();
         private tran tr = new tran();
         private int tranIndex;
+        receiptString rs = new receiptString();
         public Window1(string _message, int st = -1)
         {
             InitializeComponent();
             tranIndex = st;
             message = _message;
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
         }
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Close();
+        }
+
+        private void initTextLoad()
+        {
+            try
+            {
+                richTextBox.BorderThickness = new Thickness(0);
+                referTxt.Text = rs.m_referText;
+                comName.Text = rs.m_companyName;
+                comTel.Text = rs.m_companyTel;
+                comCeo.Text = rs.m_companyCeo;
+                comAddress.Text = rs.m_companyAddress;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            if (tranIndex == -1)
-            {
-                DisplayText(message);
-                return;
-            }
             try
             {
+                initTextLoad();
                 tranList = fileReadFunction.getTranList();
                 tr = tranList[tranIndex];
                 singleList = fileReadFunction.getSingleItemList();
@@ -52,131 +72,105 @@ namespace WpfCustomControlLibrary1
         }
         private void DisplayText(string text)
         {
-            if (tranIndex != -1)
-            {
-                string _line = "상품명".PadRight(13, ' ') + "수량".PadRight(12, ' ') + "단가".PadRight(13, ' ') + "금액".PadRight(12, ' ') + "\n";
-                richTextBox.AppendText(_line);
-                for (int i = 0; i < tr.m_lItem.Count; i++)
-                {
-                    int nextItemIndex = i * 6;
-                    if(tr.m_lItem[i].sTranItemStatus== sendMessage.s_hold.ToString())
-                    {
-                        continue;
-                    }
-                    //int iNum = Convert.ToInt32(result[nextItemIndex + sendMessage.c_itemNum]);
-                    //int iPrice = Convert.ToInt32(result[nextItemIndex + sendMessage.c_itemPrice]);
-                    //int itotal = iNum * iPrice;
-                    int sIndex=singleList.FindIndex(it => it.m_sItemId == tr.m_lItem[i].sTranItemId);
-                    int iPrice = singleList[sIndex].m_nItemPrice;
-                    int itotal = tr.m_lItem[i].nTranItemNum * iPrice;
-                    _line = singleList[sIndex].m_sItemName.PadRight(14, ' ')
-                        + tr.m_lItem[i].nTranItemNum.ToString().PadLeft(5, ' ') +
-                        calcFunction.getCommaString(Convert.ToInt32(iPrice)).PadLeft(14, ' ') +
-                        calcFunction.getCommaString(itotal).PadLeft(14, ' ') + "\n";
-                    richTextBox.AppendText(_line);
-                }
-                
-                richTextBox.AppendText("==================================================\n");
-                if (tr.m_nStatus == tran.s_tranHold)
-                {
-                    _line = "거래보류상품\n\n";
-                    richTextBox.AppendText(_line);
-                    return;
-                }
-                else if (tr.m_nStatus == tran.s_tranFinish)
-                {
-                    _line = "거래완료상품\n\n";
-                    richTextBox.AppendText(_line);
-                }
-                else if (tr.m_nStatus == tran.s_tranCancel)
-                {
-                    _line = "거래취소상품\n";
-                    string cancelReason="";
-                    richTextBox.AppendText(_line);
-                    if (tr.m_nReceiveMoney == 1)
-                    {
-                        cancelReason = "제품결함";
-                    }
-                    else if (tr.m_nReceiveMoney == 2)
-                    {
-                        cancelReason = "한도초과";
-                    }else if(tr.m_nReceiveMoney == 3)
-                    {
-                        cancelReason = "재결제";
-                    }else if (tr.m_nReceiveMoney == 4)
-                    {
-                        cancelReason = "단순변심";
-                    }
-                    _line = "취소 사유 : " + cancelReason;
-                    richTextBox.AppendText(_line);
-                    return;
-                }
-                else if (tr.m_nStatus == tran.s_tranRecover)
-                {
-                    _line = "거래복원상품\n\n";
-                    richTextBox.AppendText(_line);
-                    return;
-                }
-                _line = "합계 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nPriceMoney).PadLeft(13, ' ') + "\n";
-                richTextBox.AppendText(_line);
-
-                _line = "할인 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nDiscountMoney).PadLeft(13, ' ')
-                    + " 받은 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nReceiveMoney).PadLeft(13, ' ') + "\n";
-                richTextBox.AppendText(_line);
-
-                _line = "결제 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nTotalMoney).PadLeft(13, ' ')
-                  + " 거스름 돈 :".PadRight(9, ' ') + calcFunction.getCommaString((tr.m_nReceiveMoney)
-                  - Convert.ToInt32(tr.m_nTotalMoney)).PadLeft(13, ' ') + "\n";
-                richTextBox.AppendText(_line);
-                return;
-            }
-            
+            /*TextBlock txtNumber = new TextBlock();
+            txtNumber.Name = "txtNumber";
+            txtNumber.Text = "1776";
+            apanel.Children.Add(txtNumber);
+            apanel.RegisterName(txtNumber.Name, txtNumber);*/
             try
             {
-                string _line = "상품명".PadRight(13, ' ') + "수량".PadRight(12, ' ') + "단가".PadRight(13, ' ') + "금액".PadRight(12, ' ') + "\n";
-                richTextBox.AppendText(_line);
-                string[] result = text.Split(',');
-                for (int i = 0; i < Convert.ToInt32(result[sendMessage.c_totalItemNum]); i++)
+                bool flag = false;
+                string cancelReason = "";
+                if (tranIndex != -1)
                 {
-                    int nextItemIndex = i * 6;
-                    if (result[nextItemIndex + sendMessage.c_itemStatus] == sendMessage.s_hold.ToString())
+                    richTextBox.AppendText(rs.m_divideLine);
+                    string _line = "상품명".PadRight(13, ' ') + "수량".PadRight(12, ' ') + "단가".PadRight(13, ' ') + "금액".PadRight(12, ' ') + "\n";
+                    richTextBox.AppendText(_line);
+                    richTextBox.AppendText(rs.m_divideLine);
+                    if (tr.m_nStatus == tran.s_tranHold)
                     {
-                        continue;
+                        _line = "[보 류]";
+                        flag = true;
                     }
-                    int iNum = Convert.ToInt32(result[nextItemIndex + sendMessage.c_itemNum]);
-                    int iPrice = Convert.ToInt32(result[nextItemIndex + sendMessage.c_itemPrice]);
-                    int itotal = iNum * iPrice;
-                    //formatText = String.Format("{0,5} {1,3} {2,10} {3,10}\n", result[tnum+2], result[tnum+3], result[tnum+4], itotal.ToString());
-                    //richTextBox.AppendText(formatText);
-                    _line = result[nextItemIndex + sendMessage.c_itemName].PadRight(14, ' ') 
-                        + result[nextItemIndex + sendMessage.c_itemNum].PadLeft(5,' ') +
-                        calcFunction.getCommaString(Convert.ToInt32(result[nextItemIndex + sendMessage.c_itemPrice])).PadLeft(14,' ')+
-                        calcFunction.getCommaString(itotal).PadLeft(14,' ')+"\n";
+                    else if (tr.m_nStatus == tran.s_tranFinish)
+                    {
+                        _line = "[구 매]";
+                    }
+                    else if (tr.m_nStatus == tran.s_tranCancel)
+                    {
+                        _line = "[취 소]";
+                        flag = true;
+                        cancelReason = "";
+                        if (tr.m_nReceiveMoney == 1)
+                        {
+                            cancelReason = "제품결함";
+                        }
+                        else if (tr.m_nReceiveMoney == 2)
+                        {
+                            cancelReason = "한도초과";
+                        }
+                        else if (tr.m_nReceiveMoney == 3)
+                        {
+                            cancelReason = "재결제";
+                        }
+                        else if (tr.m_nReceiveMoney == 4)
+                        {
+                            cancelReason = "단순변심";
+                        }
+                    }
+                    else if (tr.m_nStatus == tran.s_tranRecover)
+                    {
+                        _line = "[복 원]";
+                        flag = true;
+                    }
+
+                    timeBlk.Text = _line + " " + tr.m_sDate;
+
+                    posBlk.Text = "POS: " + tr.m_sPosId + "-" + tr.m_sTradeId;
+                    for (int i = 0; i < tr.m_lItem.Count; i++)
+                    {
+                        int nextItemIndex = i * 6;
+                        if (tr.m_lItem[i].sTranItemStatus == sendMessage.s_hold.ToString())
+                        {
+                            continue;
+                        }
+                        int sIndex = singleList.FindIndex(it => it.m_sItemId == tr.m_lItem[i].sTranItemId);
+                        int iPrice = singleList[sIndex].m_nItemPrice;
+                        int itotal = tr.m_lItem[i].nTranItemNum * iPrice;
+                        _line = singleList[sIndex].m_sItemName.PadRight(14, ' ')
+                            + tr.m_lItem[i].nTranItemNum.ToString().PadLeft(5, ' ') +
+                            calcFunction.getCommaString(Convert.ToInt32(iPrice)).PadLeft(14, ' ') +
+                            calcFunction.getCommaString(itotal).PadLeft(14, ' ') + "\n";
+                        richTextBox.AppendText(_line);
+                    }
+                    richTextBox.AppendText(rs.m_divideLine);
+                    if (tr.m_nStatus == tran.s_tranCancel)
+                    {
+                        _line = "취소 사유 : " + cancelReason;
+                        richTextBox.AppendText(_line);
+                        return;
+                    }
+                    if (flag)
+                    {
+                        return;
+                    }
+                    _line = "합계 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nPriceMoney).PadLeft(13, ' ') + "\n";
+                    richTextBox.AppendText(_line);
+
+                    _line = "할인 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nDiscountMoney).PadLeft(13, ' ')
+                        + " 받은 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nReceiveMoney).PadLeft(13, ' ') + "\n";
+                    richTextBox.AppendText(_line);
+
+                    _line = "결제 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nTotalMoney).PadLeft(13, ' ')
+                      + " 거스름 돈 :".PadRight(9, ' ') + calcFunction.getCommaString((tr.m_nReceiveMoney)
+                      - Convert.ToInt32(tr.m_nTotalMoney)).PadLeft(13, ' ') + "\n";
                     richTextBox.AppendText(_line);
                 }
-                richTextBox.AppendText("==================================================\n");
-                int priceIndex = 6 * Convert.ToInt32(result[0]) + 1;
-                int discountIndex = 6 * Convert.ToInt32(result[0]) + 2;
-                int receiveIndex = 6 * Convert.ToInt32(result[0]) + 3;
-                int totalIndex = 6 * Convert.ToInt32(result[0]) + 4;
-
-                _line = "합계 금액 :".PadRight(9,' ') + calcFunction.getCommaString(Convert.ToInt32(result[priceIndex])).PadLeft(13,' ')+"\n";
-                richTextBox.AppendText(_line);
-
-                _line = "할인 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(Convert.ToInt32(result[discountIndex])).PadLeft(13, ' ')
-                    + " 받은 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(Convert.ToInt32(result[receiveIndex])).PadLeft(13, ' ')+"\n";
-                richTextBox.AppendText(_line);
-
-                _line = "결제 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(Convert.ToInt32(result[totalIndex])).PadLeft(13, ' ')
-                  + " 거스름 돈 :".PadRight(9, ' ') + calcFunction.getCommaString(Convert.ToInt32(result[receiveIndex])
-                  - Convert.ToInt32(result[totalIndex])).PadLeft(13,' ')+"\n";
-                richTextBox.AppendText(_line);
             }
             catch (Exception ex)
             {
             }
         }
-    
         private void RichTextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();

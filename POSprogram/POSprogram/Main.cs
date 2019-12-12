@@ -24,6 +24,7 @@ namespace PosProject
         private cellInfo grid = new cellInfo();
         private posInfo pos = new posInfo();
         private string line;
+        private int tranIndex;
         private mainVariable mv = new mainVariable();
         public byte[] sendBuffer;
         TcpListener server = null; // 서버
@@ -492,7 +493,7 @@ namespace PosProject
                     //dlg.ShowDialog();
                     
                     saveStatus(1, mv.m_nReceiveMoney);
-                    Window1 wpfwindow = new Window1(getDataGrid());
+                    Window1 wpfwindow = new Window1(getDataGrid(),tranList.Count-1);
                     ElementHost.EnableModelessKeyboardInterop(wpfwindow);
                     wpfwindow.Show();
                     clear(); //결제를 완료하면 메인 폼 화면 초기화
