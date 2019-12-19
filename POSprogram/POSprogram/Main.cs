@@ -10,8 +10,10 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
-using funcLibrary;
 using WpfCustomControlLibrary1;
+using ClassLibrary2;
+
+
 namespace PosProject
 {
     public partial class Main : Form
@@ -21,15 +23,13 @@ namespace PosProject
         private List<refTb> refList = new List<refTb>();
         private List<tran> tranList = new List<tran>();
         private List<TcpClient> clientList = new List<TcpClient>();
-        private cellInfo grid = new cellInfo();
-        private posInfo pos = new posInfo();
-        private string line;
-        private int tranIndex;
+        private dllCellInfo grid = new dllCellInfo();
+        private dllPosInfo pos = new dllPosInfo();
         private mainVariable mv = new mainVariable();
+        private string line;
         public byte[] sendBuffer;
         TcpListener server = null; // 서버
         TcpClient clientSocket = null; // 소켓
-
         public Main()
         {
             InitializeComponent();
@@ -67,12 +67,12 @@ namespace PosProject
             if (clientList.Contains(clientSocket))
                 clientList.Remove(clientSocket);
         }
-
+                
         private void OnReceived(string message)
         {
             SendMessageAll(message);
         }
-        
+                
         public void SendMessageAll(string message)
         {
             try
@@ -92,7 +92,7 @@ namespace PosProject
                 MessageBox.Show(ex.Message);
             }
         }
-
+        
         public void buttonClear()
         {
             tableLayoutPanel2.Visible = false;
@@ -236,6 +236,9 @@ namespace PosProject
                 case "거래조회":
                     openTran();
                     break;
+                case "매출취소":
+                    saleCancel();
+                    break;
                 default:
                     break;
             }
@@ -305,7 +308,7 @@ namespace PosProject
                                 default:
                                     break;
                             }
-                            uint payNum = Convert.ToUInt32(itemNum.ToString()) * Convert.ToUInt32(nGidItemPrice) + calcFunction.getIntNum(priceLbl.Text);
+                            uint payNum = Convert.ToUInt32(itemNum.ToString()) * Convert.ToUInt32(nGidItemPrice) + dllCalcFunction.getIntNum(priceLbl.Text);
                             if (payNum > 2000000000
                                 || payNum < 0)
                             {
@@ -333,7 +336,7 @@ namespace PosProject
                                     break;
                             }
 
-                            uint payNum = Convert.ToUInt32(itemNum.ToString()) * Convert.ToUInt32(nGidItemPrice) + calcFunction.getIntNum(priceLbl.Text);
+                            uint payNum = Convert.ToUInt32(itemNum.ToString()) * Convert.ToUInt32(nGidItemPrice) + dllCalcFunction.getIntNum(priceLbl.Text);
                             if (payNum > 2000000000
                                 || payNum < 0)
                             {
@@ -347,7 +350,7 @@ namespace PosProject
                         }
                     }
                 }
-                uint tmp = Convert.ToUInt32(itemNum) * Convert.ToUInt32(itemList[index].m_nItemPrice) + calcFunction.getIntNum(priceLbl.Text);
+                uint tmp = Convert.ToUInt32(itemNum) * Convert.ToUInt32(itemList[index].m_nItemPrice) + dllCalcFunction.getIntNum(priceLbl.Text);
                 if (tmp > 2000000000 || tmp < 0)
                 {
                     MessageBox.Show("합계 금액이 20억을 초과합니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -426,16 +429,16 @@ namespace PosProject
                         }
                     }
                     disPrice = (disPrice + disPrice % 10); //1원 단위를 없애는 역할
-                    discountLbl.Text = calcFunction.getCommaString(Convert.ToInt32(disPrice));
+                    discountLbl.Text = dllCalcFunction.getCommaString(Convert.ToInt32(disPrice));
                 }
                 if (itemGrid.Rows.Count == countCancel)
                 {
                     discountLbl.Text = "0";
                 }
                 //priceLbl.Text = sum.ToString();
-                priceLbl.Text = calcFunction.getCommaString(sum);
+                priceLbl.Text = dllCalcFunction.getCommaString(sum);
                 mv.m_nTotalMoney = sum + Convert.ToInt32(disPrice);
-                totalLbl.Text = calcFunction.getCommaString(mv.m_nTotalMoney);
+                totalLbl.Text = dllCalcFunction.getCommaString(mv.m_nTotalMoney);
             }
             catch (Exception ex)
             {
@@ -480,14 +483,14 @@ namespace PosProject
                     
                     mv.m_nReceiveMoney += iCash;
                     restCash = mv.m_nTotalMoney - mv.m_nReceiveMoney;
-                    receiveLbl.Text = calcFunction.getCommaString(mv.m_nReceiveMoney);
-                    restLbl.Text = calcFunction.getCommaString(restCash);
+                    receiveLbl.Text = dllCalcFunction.getCommaString(mv.m_nReceiveMoney);
+                    restLbl.Text = dllCalcFunction.getCommaString(restCash);
                     sendDataGrid();
                 }
                 else // 결제 가능
                 {
                     mv.m_nReceiveMoney += iCash;
-                    receiveLbl.Text = calcFunction.getCommaString(mv.m_nReceiveMoney);
+                    receiveLbl.Text = dllCalcFunction.getCommaString(mv.m_nReceiveMoney);
                     restLbl.Text = "";
                     //FrmReceipt dlg = new FrmReceipt(this, receiveMoney, totalMoney); //메인 폼과 받은돈이 얼마인지 넘겨줌
                     //dlg.ShowDialog();
@@ -730,8 +733,8 @@ namespace PosProject
                     });
                 }
                 strData += (receiveMoney.ToString() + ",");
-                strData += (calcFunction.getIntNumber(discountLbl.Text).ToString() + ",");
-                strData += (calcFunction.getIntNumber(priceLbl.Text).ToString() + ",");
+                strData += (dllCalcFunction.getIntNumber(discountLbl.Text).ToString() + ",");
+                strData += (dllCalcFunction.getIntNumber(priceLbl.Text).ToString() + ",");
                 strData += (mv.m_nTotalMoney.ToString() + "\n");
                 streamWriter.Write(strData);
                 tranList.Add(new tran()
@@ -742,8 +745,8 @@ namespace PosProject
                     m_sTradeId = tranList.Count.ToString(),
                     m_lItem = tList,
                     m_nReceiveMoney = receiveMoney,
-                    m_nDiscountMoney = Convert.ToInt32(calcFunction.getIntNumber(discountLbl.Text).ToString()),
-                    m_nPriceMoney = Convert.ToInt32(calcFunction.getIntNumber(priceLbl.Text).ToString()),
+                    m_nDiscountMoney = Convert.ToInt32(dllCalcFunction.getIntNumber(discountLbl.Text).ToString()),
+                    m_nPriceMoney = Convert.ToInt32(dllCalcFunction.getIntNumber(priceLbl.Text).ToString()),
                     m_nTotalMoney = mv.m_nTotalMoney
                 });
                 //스트림 Writer 닫아 주세요.
@@ -936,10 +939,10 @@ namespace PosProject
                     sendData += itemGrid.Rows[i].Cells[grid.m_cItemTotal].Value + ",";
                     sendData += itemGrid.Rows[i].Cells[grid.m_cItemStatus].Value + ",";
                 }
-                sendData += calcFunction.getIntNum(priceLbl.Text).ToString() + ",";
-                sendData += calcFunction.getIntNumber(discountLbl.Text).ToString() + ",";
-                sendData += calcFunction.getIntNum(receiveLbl.Text).ToString() + ",";
-                sendData += calcFunction.getIntNum(totalLbl.Text).ToString() + ",";
+                sendData += dllCalcFunction.getIntNum(priceLbl.Text).ToString() + ",";
+                sendData += dllCalcFunction.getIntNumber(discountLbl.Text).ToString() + ",";
+                sendData += dllCalcFunction.getIntNum(receiveLbl.Text).ToString() + ",";
+                sendData += dllCalcFunction.getIntNum(totalLbl.Text).ToString() + ",";
                 return sendData;
             }
             catch (Exception ex)
@@ -949,14 +952,24 @@ namespace PosProject
             }
         }
 
-
-
         private void itemGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            itemGrid.Columns[grid.m_cItemPrice].DefaultCellStyle.Format = "N0";
-            itemGrid.Columns[grid.m_cItemTotal].DefaultCellStyle.Format = "N0";
-            itemGrid.Columns[grid.m_cItemPrice].ValueType = typeof(string);
-            itemGrid.Columns[grid.m_cItemTotal].ValueType = typeof(string);
+            try
+            {
+                itemGrid.Columns[grid.m_cItemPrice].DefaultCellStyle.Format = "N0";
+                itemGrid.Columns[grid.m_cItemTotal].DefaultCellStyle.Format = "N0";
+                itemGrid.Columns[grid.m_cItemPrice].ValueType = typeof(string);
+                itemGrid.Columns[grid.m_cItemTotal].ValueType = typeof(string);
+            }
+            catch(Exception ex)
+            {
+            }
+        }
+
+        private void saleCancel()
+        {
+            FrmCancelView sc = new FrmCancelView();
+            sc.ShowDialog();
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClassLibrary2;
 
 namespace PosProject
 {
@@ -16,8 +17,8 @@ namespace PosProject
         List<singleItem> itemList = new List<singleItem>();
         List<discount> disList = new List<discount>();
         List<refTb> refList = new List<refTb>();
+        dllCellInfo grid = new dllCellInfo();
         string path;
-        cellInfo grid = new cellInfo();
 
         public FrmDiscount(string _path)
         {

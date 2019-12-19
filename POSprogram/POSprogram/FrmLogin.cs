@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using ClassLibrary2;
 
 namespace PosProject
 {
@@ -25,7 +26,7 @@ namespace PosProject
 
         private void loginForm_Load(object sender, EventArgs e)
         {
-            posInfo p = new posInfo();
+            dllPosInfo p = new dllPosInfo();
             adminId = p.m_sAdminId;
             adminPwd = p.m_sAdminPwd;
         }

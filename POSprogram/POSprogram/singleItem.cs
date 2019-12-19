@@ -49,11 +49,5 @@ namespace PosProject
         /// itemPrice의 인덱스
         /// </summary>
         public const int c_itemPrice = 2;
-
-
     }
-
-
-
-    
 }

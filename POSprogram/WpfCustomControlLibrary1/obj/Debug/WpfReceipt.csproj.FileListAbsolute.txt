@@ -62,5 +62,3 @@ C:\Users\SSG\Desktop\tsGit\pos\POSprogram\WpfCustomControlLibrary1\obj\Debug\Wpf
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\WpfCustomControlLibrary1\obj\Debug\WpfReceipt.csproj.CoreCompileInputs.cache
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\WpfCustomControlLibrary1\obj\Debug\WpfCustomControlLibrary1.dll
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\WpfCustomControlLibrary1\obj\Debug\WpfCustomControlLibrary1.pdb
-C:\Users\SSG\Desktop\tsGit\pos\POSprogram\WpfCustomControlLibrary1\obj\Debug\Window3.g.cs
-C:\Users\SSG\Desktop\tsGit\pos\POSprogram\WpfCustomControlLibrary1\obj\Debug\Window3.baml

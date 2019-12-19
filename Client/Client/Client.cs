@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClassLibrary2;
 
 namespace Client
 {
@@ -18,7 +19,7 @@ namespace Client
     {
         TcpClient clientSocket = new TcpClient();
         NetworkStream stream = default(NetworkStream);
-        posInfo ps = new posInfo();
+        dllPosInfo ps = new dllPosInfo();
         public static bool isConnected { get; set; }
         public Client()
         {
@@ -35,7 +36,7 @@ namespace Client
                 try
                 {
                     clientSocket = new TcpClient();
-                    clientSocket.Connect(ps.sIp, ps.nPort);
+                    clientSocket.Connect(ps.m_sIp, ps.m_nPort);
                     isConnected = true;
                     stream = clientSocket.GetStream();
                     Thread t_handler = new Thread(GetMessage);
@@ -138,11 +139,11 @@ namespace Client
 
                 this.Invoke(new Action(delegate ()
                 {
-                    priceLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[priceIndex]));
-                    discountLbl.Text = calcFunction.getCommaString(Convert.ToInt16(result[discountIndex]));
-                    receiveLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[receiveIndex]));
-                    totalLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[totalIndex]));
-                    restLbl.Text = calcFunction.getCommaString(Convert.ToInt32(result[totalIndex]) 
+                    priceLbl.Text = dllCalcFunction.getCommaString(Convert.ToInt32(result[priceIndex]));
+                    discountLbl.Text = dllCalcFunction.getCommaString(Convert.ToInt16(result[discountIndex]));
+                    receiveLbl.Text = dllCalcFunction.getCommaString(Convert.ToInt32(result[receiveIndex]));
+                    totalLbl.Text = dllCalcFunction.getCommaString(Convert.ToInt32(result[totalIndex]));
+                    restLbl.Text = dllCalcFunction.getCommaString(Convert.ToInt32(result[totalIndex]) 
                         - Convert.ToInt32(result[receiveIndex]));
                     if (restLbl.Text == totalLbl.Text)
                     {

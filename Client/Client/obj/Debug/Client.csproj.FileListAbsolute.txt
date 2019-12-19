@@ -38,3 +38,6 @@ C:\Users\SSG\Desktop\tsGit\pos\Client\Client\obj\Debug\Client.csproj.GenerateRes
 C:\Users\SSG\Desktop\tsGit\pos\Client\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 C:\Users\SSG\Desktop\tsGit\pos\Client\Client\obj\Debug\Client.exe
 C:\Users\SSG\Desktop\tsGit\pos\Client\Client\obj\Debug\Client.pdb
+C:\Users\SSG\Desktop\tsGit\pos\Client\Client\bin\Debug\ClassLibrary2.dll
+C:\Users\SSG\Desktop\tsGit\pos\Client\Client\bin\Debug\ClassLibrary2.pdb
+C:\Users\SSG\Desktop\tsGit\pos\Client\Client\obj\Debug\Client.csproj.CopyComplete

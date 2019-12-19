@@ -36,6 +36,8 @@
             this.grdItemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdItemTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.restLbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.receiveLbl = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -44,8 +46,6 @@
             this.priceLbl = new System.Windows.Forms.Label();
             this.discountLbl = new System.Windows.Forms.Label();
             this.totalLbl = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.restLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.cItemGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +65,7 @@
             this.grdItemPrice,
             this.grdItemTotal});
             this.cItemGrid.GridColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cItemGrid.Location = new System.Drawing.Point(29, 26);
+            this.cItemGrid.Location = new System.Drawing.Point(236, 32);
             this.cItemGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cItemGrid.MultiSelect = false;
             this.cItemGrid.Name = "cItemGrid";
@@ -133,10 +133,10 @@
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label8, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.priceLbl, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.discountLbl, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.totalLbl, 1, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(29, 299);
+            this.tableLayoutPanel1.Controls.Add(this.discountLbl, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.priceLbl, 1, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(236, 313);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -146,6 +146,28 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(203, 85);
             this.tableLayoutPanel1.TabIndex = 33;
+            // 
+            // restLbl
+            // 
+            this.restLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.restLbl.AutoSize = true;
+            this.restLbl.Location = new System.Drawing.Point(91, 67);
+            this.restLbl.Name = "restLbl";
+            this.restLbl.Size = new System.Drawing.Size(108, 15);
+            this.restLbl.TabIndex = 26;
+            this.restLbl.Text = "0";
+            this.restLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 67);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 15);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "남은금액";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
@@ -206,7 +228,7 @@
             // 
             this.priceLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.priceLbl.AutoSize = true;
-            this.priceLbl.Location = new System.Drawing.Point(91, 1);
+            this.priceLbl.Location = new System.Drawing.Point(91, 17);
             this.priceLbl.Name = "priceLbl";
             this.priceLbl.Size = new System.Drawing.Size(108, 15);
             this.priceLbl.TabIndex = 8;
@@ -217,7 +239,7 @@
             // 
             this.discountLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.discountLbl.AutoSize = true;
-            this.discountLbl.Location = new System.Drawing.Point(91, 17);
+            this.discountLbl.Location = new System.Drawing.Point(91, 1);
             this.discountLbl.Name = "discountLbl";
             this.discountLbl.Size = new System.Drawing.Size(108, 15);
             this.discountLbl.TabIndex = 9;
@@ -235,34 +257,12 @@
             this.totalLbl.Text = "0";
             this.totalLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 67);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 15);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "남은금액";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // restLbl
-            // 
-            this.restLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.restLbl.AutoSize = true;
-            this.restLbl.Location = new System.Drawing.Point(91, 67);
-            this.restLbl.Name = "restLbl";
-            this.restLbl.Size = new System.Drawing.Size(108, 15);
-            this.restLbl.TabIndex = 26;
-            this.restLbl.Text = "0";
-            this.restLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(469, 405);
+            this.ClientSize = new System.Drawing.Size(672, 417);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.cItemGrid);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

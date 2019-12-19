@@ -51,8 +51,6 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="calcFunction.cs" />
-    <Compile Include="cellInfo.cs" />
     <Compile Include="FrmCancel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +59,12 @@
     </Compile>
     <Compile Include="Client.cs" />
     <Compile Include="discount.cs" />
+    <Compile Include="FrmCancelView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCancelView.Designer.cs">
+      <DependentUpon>FrmCancelView.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDiscount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +82,12 @@
     </Compile>
     <Compile Include="FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSaleCancel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSaleCancel.Designer.cs">
+      <DependentUpon>FrmSaleCancel.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmTranInq.cs">
       <SubType>Form</SubType>
@@ -104,7 +114,6 @@
       <DependentUpon>FrmMasterInq.cs</DependentUpon>
     </Compile>
     <Compile Include="mainVariable.cs" />
-    <Compile Include="posInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FrmRecover.cs">
@@ -120,6 +129,9 @@
     <EmbeddedResource Include="FrmCancel.resx">
       <DependentUpon>FrmCancel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmCancelView.resx">
+      <DependentUpon>FrmCancelView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmDiscount.resx">
       <DependentUpon>FrmDiscount.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSaleCancel.resx">
+      <DependentUpon>FrmSaleCancel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmTranInq.resx">
       <DependentUpon>FrmTranInq.cs</DependentUpon>
@@ -168,9 +183,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\funcLibrary\funcLibrary.csproj">
-      <Project>{5d246669-9b16-4698-ae57-54a128ab2c43}</Project>
-      <Name>funcLibrary</Name>
+    <ProjectReference Include="..\ClassLibrary2\dllLibrary.csproj">
+      <Project>{74f6dc2a-fbfe-4762-992b-18f1efdab056}</Project>
+      <Name>dllLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\WpfCustomControlLibrary1\WpfReceipt.csproj">
       <Project>{393c31a8-25a5-4d29-aa5d-c3ac66375cf9}</Project>

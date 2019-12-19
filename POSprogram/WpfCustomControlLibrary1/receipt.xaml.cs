@@ -134,6 +134,7 @@ namespace WpfCustomControlLibrary1
                         {
                             continue;
                         }
+                        //int itotal = iNum * iPrice;
                         int sIndex = singleList.FindIndex(it => it.m_sItemId == tr.m_lItem[i].sTranItemId);
                         int iPrice = singleList[sIndex].m_nItemPrice;
                         int itotal = tr.m_lItem[i].nTranItemNum * iPrice;

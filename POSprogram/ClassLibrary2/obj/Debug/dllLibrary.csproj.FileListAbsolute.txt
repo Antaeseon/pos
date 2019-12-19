@@ -1,0 +1,6 @@
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\ClassLibrary2\bin\Debug\ClassLibrary2.dll
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\ClassLibrary2\bin\Debug\ClassLibrary2.pdb
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\ClassLibrary2\obj\Debug\dllLibrary.csprojAssemblyReference.cache
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\ClassLibrary2\obj\Debug\dllLibrary.csproj.CoreCompileInputs.cache
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\ClassLibrary2\obj\Debug\ClassLibrary2.dll
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\ClassLibrary2\obj\Debug\ClassLibrary2.pdb

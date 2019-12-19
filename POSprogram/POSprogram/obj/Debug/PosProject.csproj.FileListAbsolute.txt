@@ -102,9 +102,7 @@ C:\Users\SSG\Desktop\11_26Pos\POSprogram\POSprogram\obj\Debug\PosProject.pdb
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\bin\Debug\PosProject.exe.config
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\bin\Debug\PosProject.exe
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\bin\Debug\PosProject.pdb
-C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\bin\Debug\funcLibrary.dll
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\bin\Debug\WpfCustomControlLibrary1.dll
-C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\bin\Debug\funcLibrary.pdb
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\bin\Debug\WpfCustomControlLibrary1.pdb
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.csprojAssemblyReference.cache
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.FrmCancel.resources
@@ -122,3 +120,7 @@ C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.csproj
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.exe
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.pdb
 C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.FrmTranInq.resources
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\bin\Debug\ClassLibrary2.dll
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\bin\Debug\ClassLibrary2.pdb
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.FrmCancelView.resources
+C:\Users\SSG\Desktop\tsGit\pos\POSprogram\POSprogram\obj\Debug\PosProject.FrmSaleCancel.resources
