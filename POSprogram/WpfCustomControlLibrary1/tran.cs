@@ -126,6 +126,10 @@ namespace WpfCustomControlLibrary1
         public const int s_tranRecover = 3;
 
         /// <summary>
+        /// 거래매출취소
+        /// </summary>
+        public const int s_tranSaleCancel = 4;
+        /// <summary>
         /// status
         /// </summary>
         public const int c_status = 0;

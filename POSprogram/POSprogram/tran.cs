@@ -33,7 +33,7 @@ namespace PosProject
         private int nReceiveMoney;
         private int nTotalMoney;
         /// <summary>
-        /// 해당 거래의 상태 ( 0 : 보류, 1 : 거래완료, 2 : 일괄취소, 3: 복원 )
+        /// 해당 거래의 상태 ( 0 : 보류, 1 : 거래완료, 2 : 일괄취소, 3: 복원, 4: 매출전체취소)
         /// </summary>
         public int m_nStatus
         {
@@ -124,7 +124,10 @@ namespace PosProject
         /// 거래복원
         /// </summary>
         public const int s_tranRecover = 3;
-
+        /// <summary>
+        /// 매출전체취소
+        /// </summary>
+        public const int s_tranSaleCancel = 4;
         /// <summary>
         /// status
         /// </summary>

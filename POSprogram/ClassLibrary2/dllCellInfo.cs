@@ -50,8 +50,8 @@ namespace ClassLibrary2
         {
             this.cItemId = 0;
             this.cItemName = 1;
-            this.cItemNum = 2;
-            this.cItemPrice = 3;
+            this.cItemPrice = 2;
+            this.cItemNum = 3;
             this.cItemTotal = 4;
             this.cItemStatus = 5;
         }

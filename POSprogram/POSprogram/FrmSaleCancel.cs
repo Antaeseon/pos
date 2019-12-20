@@ -36,15 +36,16 @@ namespace PosProject
         private void button1_Click(object sender, EventArgs e)
         {
             int resultPosIndex = tranList.FindIndex(it => it.m_sPosId.ToString() == txtPosId.Text);
+            //MessageBox.Show(dateTimePicker1.Value.ToString("yyyy-MM-dd"));
             if (resultPosIndex == -1)
             {
-                MessageBox.Show("해당 posId가 존재하지 않습니다.");
+                MessageBox.Show("해당 거래가 존재하지 않습니다.");
                 return;
             }
             int resultTradeIndex = tranList.FindIndex(it => it.m_sTradeId == txtTradeId.Text);
             if (resultTradeIndex == -1)
             {
-                MessageBox.Show("해당 TradeId가 존재하지 않습니다.");
+                MessageBox.Show("해당 거래가 존재하지 않습니다.");
                 return;
             }
             FormSendEvent(resultPosIndex,resultTradeIndex);

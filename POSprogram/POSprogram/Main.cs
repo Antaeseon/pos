@@ -360,7 +360,9 @@ namespace PosProject
                 if (mv.m_bInGrid == false)
                 {
                     itemGrid.Rows.Add(getNum.ToString(), itemList[index].m_sItemName,
-                    itemNum.ToString(), itemList[index].m_nItemPrice, (Convert.ToInt32(itemNum.ToString()) * Convert.ToInt32(itemList[index].m_nItemPrice)).ToString(),tran.s_itemStatusNormal.ToString());
+                     itemList[index].m_nItemPrice, itemNum.ToString(),
+                     (Convert.ToInt32(itemNum.ToString()) * Convert.ToInt32(itemList[index].m_nItemPrice)).ToString(),
+                     tran.s_itemStatusNormal.ToString());
                 }
                 //int sum = Convert.ToInt32(priceLbl.Text);
                 //sum = sum + (Convert.ToInt32(itemList[index].price) * Convert.ToInt32(itemNum.ToString()));
@@ -696,6 +698,51 @@ namespace PosProject
             clear();
             sendDataGrid();
         }
+        private void saveTran()
+        {
+            try
+            {
+                string filePath = @"tran.mst";
+                FileStream fileStream = new FileStream(
+                filePath,              //저장경로
+                FileMode.Create,       //파일스트림 모드
+                FileAccess.Write       //접근 권한
+                );
+
+                StreamWriter streamWriter = new StreamWriter(
+                fileStream,            //쓸 파일스트림을 여기에다가.....
+                Encoding.UTF8          //파일에다 쓸때 인코딩 객체 전달.
+                );
+                foreach(var singleTran in tranList)
+                {
+                    string strData = "";
+                    strData += (singleTran.m_nStatus.ToString() + ",");
+                    strData += (singleTran.m_sDate.ToString() + ",");
+                    strData += (singleTran.m_sPosId + ",");
+                    strData += (singleTran.m_sTradeId + ",");
+                    for (int i = 0; i < singleTran.m_lItem.Count; i++)
+                    {
+                        strData += (singleTran.m_lItem[i].sTranItemId.ToString() + ",");
+                        strData += (singleTran.m_lItem[i].nTranItemNum.ToString() + ",");
+                        strData += (singleTran.m_lItem[i].sTranItemStatus + ",");
+                    }
+                    strData += (singleTran.m_nReceiveMoney.ToString() + ",");
+                    strData += (singleTran.m_nDiscountMoney.ToString() + ",");
+                    strData += (singleTran.m_nPriceMoney.ToString() + ",");
+                    strData += (singleTran.m_nTotalMoney.ToString() + "\n");
+                    streamWriter.Write(strData);
+                }
+
+
+                //스트림 Writer 닫아 주세요.
+                streamWriter.Close();
+                fileStream.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void saveStatus(int status, int receiveMoney)
         {
@@ -808,6 +855,7 @@ namespace PosProject
             {
                 int index = tranList.FindIndex(it => it.m_sTradeId == tradeId);
                 tran tempT = tranList[index];
+                tranList[index].m_nStatus = 3;
                 Dictionary<string, int> td = new Dictionary<string, int>();
                 foreach (var i in tempT.m_lItem)
                 {
@@ -832,14 +880,14 @@ namespace PosProject
                     int ItemIndex = itemList.FindIndex(it => it.m_sItemId == itemId);
                     for (int i = 0; i < itemNum / 999; i++)
                     {
-                        itemGrid.Rows.Add(itemId, itemList[ItemIndex].m_sItemName, 999,
-                            itemList[ItemIndex].m_nItemPrice
+                        itemGrid.Rows.Add(itemId, itemList[ItemIndex].m_sItemName,
+                            itemList[ItemIndex].m_nItemPrice,999
                             , 999 * itemList[ItemIndex].m_nItemPrice, 0);
                     }
                     if (itemNum % 999 > 0)
                     {
-                        itemGrid.Rows.Add(itemId, itemList[ItemIndex].m_sItemName, itemNum % 999,
-                        itemList[ItemIndex].m_nItemPrice
+                        itemGrid.Rows.Add(itemId,  itemList[ItemIndex].m_sItemName,
+                        itemList[ItemIndex].m_nItemPrice,itemNum % 999
                         , (itemNum % 999) * itemList[ItemIndex].m_nItemPrice, 0);
                     }
                 }
@@ -847,7 +895,9 @@ namespace PosProject
                 calculate();
                 itemGrid.CurrentCell = itemGrid.Rows[itemGrid.Rows.Count - 1].Cells[grid.m_cItemName];
                 sendDataGrid();
-                string textFile = @"tran.mst";
+                saveTran();
+
+                /*string textFile = @"tran.mst";
                 string copyFile = @"copy.mst";
                 File.Copy(textFile, copyFile, true); //복사
                 System.IO.StreamReader file =
@@ -877,6 +927,8 @@ namespace PosProject
                 file.Close();
                 streamWriter.Close();
                 fileStream.Close();
+                */
+
             }
             catch (Exception ex)
             {
@@ -968,8 +1020,15 @@ namespace PosProject
 
         private void saleCancel()
         {
-            FrmCancelView sc = new FrmCancelView();
-            sc.ShowDialog();
+            try
+            {
+                FrmCancelView sc = new FrmCancelView();
+                sc.ShowDialog();
+                tranList = fileReadFunction.getTranList();
+            }
+            catch(Exception ex)
+            {
+            }
         }
     }
 }

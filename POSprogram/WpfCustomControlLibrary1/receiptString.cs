@@ -44,8 +44,8 @@ namespace WpfCustomControlLibrary1
         public receiptString()
         {
             this.companyName = "emart";
-            this.companyTel = "이마트 성수점 (02)3408-1234";
-            this.companyCeo = "206-86-50913 안태선";
+            this.companyTel = "이마트 성수점 (02)1234-1234";
+            this.companyCeo = "111-12-12345 안태선";
             this.companyAddress = "서울시 성동구 뚝섬로 379";
             this.referText= "영수증 미지참시 교환/환불 불가(30일내)\n" +
                 "교환/환불 구매점에서 가능 (결제카드 지참)\n" +

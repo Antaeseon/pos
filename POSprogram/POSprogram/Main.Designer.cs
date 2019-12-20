@@ -31,12 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.button1 = new System.Windows.Forms.Button();
             this.itemGrid = new System.Windows.Forms.DataGridView();
-            this.grdItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grdItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grdItemNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grdItemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grdItemTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cancelFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -60,8 +54,14 @@
             this.restLbl = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tranBtn = new System.Windows.Forms.Button();
             this.saleCancelBtn = new System.Windows.Forms.Button();
+            this.tranBtn = new System.Windows.Forms.Button();
+            this.grdItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdItemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdItemNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdItemTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cancelFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.itemGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -89,8 +89,8 @@
             this.itemGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.grdItemId,
             this.grdItemName,
-            this.grdItemNum,
             this.grdItemPrice,
+            this.grdItemNum,
             this.grdItemTotal,
             this.cancelFlag});
             this.itemGrid.GridColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -106,54 +106,6 @@
             this.itemGrid.Size = new System.Drawing.Size(555, 251);
             this.itemGrid.TabIndex = 4;
             this.itemGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.itemGrid_CellFormatting);
-            // 
-            // grdItemId
-            // 
-            this.grdItemId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.grdItemId.HeaderText = "아이템아이디";
-            this.grdItemId.Name = "grdItemId";
-            this.grdItemId.ReadOnly = true;
-            this.grdItemId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.grdItemId.Visible = false;
-            // 
-            // grdItemName
-            // 
-            this.grdItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.grdItemName.HeaderText = "상품명";
-            this.grdItemName.Name = "grdItemName";
-            this.grdItemName.ReadOnly = true;
-            this.grdItemName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // grdItemNum
-            // 
-            this.grdItemNum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.grdItemNum.HeaderText = "수량";
-            this.grdItemNum.Name = "grdItemNum";
-            this.grdItemNum.ReadOnly = true;
-            this.grdItemNum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // grdItemPrice
-            // 
-            this.grdItemPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.grdItemPrice.HeaderText = "단가";
-            this.grdItemPrice.Name = "grdItemPrice";
-            this.grdItemPrice.ReadOnly = true;
-            this.grdItemPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // grdItemTotal
-            // 
-            this.grdItemTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.grdItemTotal.HeaderText = "합계";
-            this.grdItemTotal.Name = "grdItemTotal";
-            this.grdItemTotal.ReadOnly = true;
-            this.grdItemTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // cancelFlag
-            // 
-            this.cancelFlag.HeaderText = "취소플래그";
-            this.cancelFlag.Name = "cancelFlag";
-            this.cancelFlag.ReadOnly = true;
-            this.cancelFlag.Visible = false;
             // 
             // label1
             // 
@@ -257,7 +209,7 @@
             // adminBtn
             // 
             this.adminBtn.BackColor = System.Drawing.SystemColors.Highlight;
-            this.adminBtn.Location = new System.Drawing.Point(333, 14);
+            this.adminBtn.Location = new System.Drawing.Point(411, 11);
             this.adminBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.adminBtn.Name = "adminBtn";
             this.adminBtn.Size = new System.Drawing.Size(82, 30);
@@ -338,7 +290,7 @@
             // adminOffBtn
             // 
             this.adminOffBtn.BackColor = System.Drawing.SystemColors.Highlight;
-            this.adminOffBtn.Location = new System.Drawing.Point(438, 14);
+            this.adminOffBtn.Location = new System.Drawing.Point(516, 11);
             this.adminOffBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.adminOffBtn.Name = "adminOffBtn";
             this.adminOffBtn.Size = new System.Drawing.Size(82, 30);
@@ -435,12 +387,24 @@
             this.tableLayoutPanel2.Controls.Add(this.allCancelBtn, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.recoverBtn, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.logOutBtn, 5, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(39, 14);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(42, 11);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(555, 40);
             this.tableLayoutPanel2.TabIndex = 26;
+            // 
+            // saleCancelBtn
+            // 
+            this.saleCancelBtn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.saleCancelBtn.Location = new System.Drawing.Point(371, 5);
+            this.saleCancelBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.saleCancelBtn.Name = "saleCancelBtn";
+            this.saleCancelBtn.Size = new System.Drawing.Size(86, 30);
+            this.saleCancelBtn.TabIndex = 27;
+            this.saleCancelBtn.Text = "매출취소";
+            this.saleCancelBtn.UseVisualStyleBackColor = true;
+            this.saleCancelBtn.Click += new System.EventHandler(this.btnClick);
             // 
             // tranBtn
             // 
@@ -454,17 +418,53 @@
             this.tranBtn.UseVisualStyleBackColor = true;
             this.tranBtn.Click += new System.EventHandler(this.btnClick);
             // 
-            // saleCancelBtn
+            // grdItemId
             // 
-            this.saleCancelBtn.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.saleCancelBtn.Location = new System.Drawing.Point(371, 5);
-            this.saleCancelBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.saleCancelBtn.Name = "saleCancelBtn";
-            this.saleCancelBtn.Size = new System.Drawing.Size(86, 30);
-            this.saleCancelBtn.TabIndex = 27;
-            this.saleCancelBtn.Text = "매출취소";
-            this.saleCancelBtn.UseVisualStyleBackColor = true;
-            this.saleCancelBtn.Click += new System.EventHandler(this.btnClick);
+            this.grdItemId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.grdItemId.HeaderText = "아이템아이디";
+            this.grdItemId.Name = "grdItemId";
+            this.grdItemId.ReadOnly = true;
+            this.grdItemId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.grdItemId.Visible = false;
+            // 
+            // grdItemName
+            // 
+            this.grdItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.grdItemName.HeaderText = "상품명";
+            this.grdItemName.Name = "grdItemName";
+            this.grdItemName.ReadOnly = true;
+            this.grdItemName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // grdItemPrice
+            // 
+            this.grdItemPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.grdItemPrice.HeaderText = "단가";
+            this.grdItemPrice.Name = "grdItemPrice";
+            this.grdItemPrice.ReadOnly = true;
+            this.grdItemPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // grdItemNum
+            // 
+            this.grdItemNum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.grdItemNum.HeaderText = "수량";
+            this.grdItemNum.Name = "grdItemNum";
+            this.grdItemNum.ReadOnly = true;
+            this.grdItemNum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // grdItemTotal
+            // 
+            this.grdItemTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.grdItemTotal.HeaderText = "합계";
+            this.grdItemTotal.Name = "grdItemTotal";
+            this.grdItemTotal.ReadOnly = true;
+            this.grdItemTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // cancelFlag
+            // 
+            this.cancelFlag.HeaderText = "취소플래그";
+            this.cancelFlag.Name = "cancelFlag";
+            this.cancelFlag.ReadOnly = true;
+            this.cancelFlag.Visible = false;
             // 
             // Main
             // 
@@ -522,12 +522,6 @@
         private System.Windows.Forms.Button adminBtn2;
         private System.Windows.Forms.Button logOutBtn;
         private System.Windows.Forms.Button adminOffBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grdItemId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grdItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grdItemNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grdItemPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grdItemTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cancelFlag;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label receiveLbl;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -536,6 +530,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button tranBtn;
         private System.Windows.Forms.Button saleCancelBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grdItemId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grdItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grdItemPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grdItemNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grdItemTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cancelFlag;
     }
 }
 

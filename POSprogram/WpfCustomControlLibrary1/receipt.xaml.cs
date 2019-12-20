@@ -25,6 +25,7 @@ namespace WpfCustomControlLibrary1
         private List<singleItem> singleList = new List<singleItem>();
         private tran tr = new tran();
         private int tranIndex;
+        private int saleCancel = 1;
         receiptString rs = new receiptString();
         public Window1(string _message, int st = -1)
         {
@@ -64,7 +65,7 @@ namespace WpfCustomControlLibrary1
                 tranList = fileReadFunction.getTranList();
                 tr = tranList[tranIndex];
                 singleList = fileReadFunction.getSingleItemList();
-                DisplayText("tran");
+                DisplayText(message);
             }
             catch (Exception ex)
             {
@@ -80,6 +81,7 @@ namespace WpfCustomControlLibrary1
             try
             {
                 bool flag = false;
+                saleCancel = 1;
                 string cancelReason = "";
                 if (tranIndex != -1)
                 {
@@ -123,6 +125,11 @@ namespace WpfCustomControlLibrary1
                         _line = "[복 원]";
                         flag = true;
                     }
+                    else if (tr.m_nStatus == tran.s_tranSaleCancel)
+                    {
+                        _line = "[반 품]";
+                        saleCancel = -1;
+                    }
 
                     timeBlk.Text = _line + " " + tr.m_sDate;
 
@@ -137,9 +144,9 @@ namespace WpfCustomControlLibrary1
                         //int itotal = iNum * iPrice;
                         int sIndex = singleList.FindIndex(it => it.m_sItemId == tr.m_lItem[i].sTranItemId);
                         int iPrice = singleList[sIndex].m_nItemPrice;
-                        int itotal = tr.m_lItem[i].nTranItemNum * iPrice;
+                        int itotal = saleCancel * tr.m_lItem[i].nTranItemNum * iPrice;
                         _line = singleList[sIndex].m_sItemName.PadRight(14, ' ')
-                            + tr.m_lItem[i].nTranItemNum.ToString().PadLeft(5, ' ') +
+                            + (saleCancel * tr.m_lItem[i].nTranItemNum).ToString().PadLeft(5, ' ') +
                             calcFunction.getCommaString(Convert.ToInt32(iPrice)).PadLeft(14, ' ') +
                             calcFunction.getCommaString(itotal).PadLeft(14, ' ') + "\n";
                         richTextBox.AppendText(_line);

@@ -44,10 +44,13 @@ namespace PosProject
                     {
                         tranStatusString = "취소";
                     }
-                    else if (tranList[i].m_nStatus == tran.s_tranRecover
-                        || tranList[i].m_nStatus == 4)
+                    else if (tranList[i].m_nStatus == tran.s_tranRecover)
                     {
                         tranStatusString = "복원";
+                    }
+                    else if(tranList[i].m_nStatus == tran.s_tranSaleCancel)
+                    {
+                        tranStatusString = "반품";
                     }
                     tranGrid.Rows.Add(tranStatusString, tranList[i].m_sDate.Substring(0, 10), tranList[i].m_sPosId, tranList[i].m_sTradeId);
                 }
@@ -73,8 +76,8 @@ namespace PosProject
             string endDate = ed.ToString("yyyy-MM-dd");
             if(DateTime.Parse(startDate) > DateTime.Parse(endDate)){
                 MessageBox.Show("날짜 설정을 다시 해 주세요");
-                initDatePicker.Value = DateTime.Today.AddMonths(-1);
-                endDatePicker.Value = DateTime.Today;
+                //initDatePicker.Value = DateTime.Today.AddMonths(-1);
+                //endDatePicker.Value = DateTime.Today;
                 return;
             }
 
