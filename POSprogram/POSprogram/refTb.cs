@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace PosProject
 {
-
-
     class refTb
     {
         private string sItemId;

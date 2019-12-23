@@ -13,7 +13,6 @@ using System.Windows.Forms.Integration;
 using WpfCustomControlLibrary1;
 using ClassLibrary2;
 
-
 namespace PosProject
 {
     public partial class Main : Form
@@ -134,7 +133,6 @@ namespace PosProject
                 refList = fileReadFunction.GetRefTb();
                 tranList = fileReadFunction.getTranList();
             }
-            
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -343,7 +341,7 @@ namespace PosProject
                                 MessageBox.Show("합계 금액이 20억을 초과합니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
-
+                      
                             itemGrid.Rows[rowIndex - 1].Cells[grid.m_cItemNum].Value = sPlusItemNum.ToString();
                             itemGrid.Rows[rowIndex - 1].Cells[grid.m_cItemTotal].Value = (sPlusItemNum * nGidItemPrice).ToString();
                             mv.m_bInGrid = true;
@@ -370,7 +368,6 @@ namespace PosProject
                 calculate();
                 itemGrid.CurrentCell = itemGrid.Rows[itemGrid.Rows.Count - 1].Cells[grid.m_cItemName];
                 sendDataGrid();
-
             }
             catch (Exception ex)
             {
@@ -476,7 +473,6 @@ namespace PosProject
                     MessageBox.Show("받은 금액이 21억 이상입니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
 
                 if (mv.m_nReceiveMoney + iCash < mv.m_nTotalMoney)
                 {
@@ -766,7 +762,7 @@ namespace PosProject
                 strData += (status.ToString() + ",");
                 strData += (DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss") + ",");
                 strData += (pos.m_sPosId + ",");
-                strData += (tranList.Count.ToString() + ",");
+                strData += (String.Format("{0:0000}", tranList.Count) + ",");
                 for (int i = 0; i < itemGrid.Rows.Count; i++)
                 {
                     strData += (itemGrid.Rows[i].Cells[grid.m_cItemId].Value.ToString() + ",");
@@ -789,7 +785,7 @@ namespace PosProject
                     m_nStatus = status,
                     m_sDate = DateTime.Now.ToString("HH:mm:ss"),
                     m_sPosId = pos.m_sPosId,
-                    m_sTradeId = tranList.Count.ToString(),
+                    m_sTradeId = String.Format("{0:0000}",tranList.Count),
                     m_lItem = tList,
                     m_nReceiveMoney = receiveMoney,
                     m_nDiscountMoney = Convert.ToInt32(dllCalcFunction.getIntNumber(discountLbl.Text).ToString()),

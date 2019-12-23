@@ -26,6 +26,8 @@ namespace PosProject
             try
             {
                 tranList = fileReadFunction.getTranList();
+                dateTimePicker1.CustomFormat = "yyyy-MM-dd";
+                dateTimePicker1.Format = DateTimePickerFormat.Custom;
             }
             catch (Exception ex)
             {
@@ -33,23 +35,41 @@ namespace PosProject
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+
+        private void but_Click(object sender, EventArgs e)
         {
-            int resultPosIndex = tranList.FindIndex(it => it.m_sPosId.ToString() == txtPosId.Text);
+            Button btn = sender as Button;
+            string s = btn.Text;
+
+            switch (s)
+            {
+                case "입력완료":
+                    complete();
+                    break;
+                case "취소":
+                    this.Close();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void complete()
+        {
+            int PosIndex = tranList.FindIndex(it => it.m_sPosId.ToString() == txtPosId.Text
+            && it.m_sDate.Substring(0, 10) == dateTimePicker1.Value.ToString().Substring(0, 10)
+            &&it.m_sTradeId==txtTradeId.Text);
             //MessageBox.Show(dateTimePicker1.Value.ToString("yyyy-MM-dd"));
-            if (resultPosIndex == -1)
+            if (PosIndex == -1)
             {
                 MessageBox.Show("해당 거래가 존재하지 않습니다.");
                 return;
             }
-            int resultTradeIndex = tranList.FindIndex(it => it.m_sTradeId == txtTradeId.Text);
-            if (resultTradeIndex == -1)
-            {
-                MessageBox.Show("해당 거래가 존재하지 않습니다.");
-                return;
-            }
-            FormSendEvent(resultPosIndex,resultTradeIndex);
+            FormSendEvent(PosIndex, PosIndex);
             this.Close();
+
         }
     }
 }

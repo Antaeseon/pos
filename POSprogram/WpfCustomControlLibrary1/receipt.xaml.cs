@@ -162,17 +162,25 @@ namespace WpfCustomControlLibrary1
                     {
                         return;
                     }
-                    _line = "합계 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nPriceMoney).PadLeft(13, ' ') + "\n";
-                    richTextBox.AppendText(_line);
+                    if (saleCancel == -1)
+                    {
+                        _line = "결제 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(saleCancel * tr.m_nPriceMoney).PadLeft(13, ' ') + "\n";
+                        richTextBox.AppendText(_line);
+                    }
+                    else
+                    {
+                        _line = "합계 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nPriceMoney).PadLeft(13, ' ') + "\n";
+                        richTextBox.AppendText(_line);
 
-                    _line = "할인 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nDiscountMoney).PadLeft(13, ' ')
-                        + " 받은 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nReceiveMoney).PadLeft(13, ' ') + "\n";
-                    richTextBox.AppendText(_line);
+                        _line = "할인 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nDiscountMoney).PadLeft(13, ' ')
+                            + " 받은 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nReceiveMoney).PadLeft(13, ' ') + "\n";
+                        richTextBox.AppendText(_line);
 
-                    _line = "결제 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nTotalMoney).PadLeft(13, ' ')
-                      + " 거스름 돈 :".PadRight(9, ' ') + calcFunction.getCommaString((tr.m_nReceiveMoney)
-                      - Convert.ToInt32(tr.m_nTotalMoney)).PadLeft(13, ' ') + "\n";
-                    richTextBox.AppendText(_line);
+                        _line = "결제 금액 :".PadRight(9, ' ') + calcFunction.getCommaString(tr.m_nTotalMoney).PadLeft(13, ' ')
+                          + " 거스름 돈 :".PadRight(9, ' ') + calcFunction.getCommaString((tr.m_nReceiveMoney)
+                          - Convert.ToInt32(tr.m_nTotalMoney)).PadLeft(13, ' ') + "\n";
+                        richTextBox.AppendText(_line);
+                    }
                 }
             }
             catch (Exception ex)

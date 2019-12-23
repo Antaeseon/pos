@@ -37,10 +37,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtPosId = new System.Windows.Forms.TextBox();
             this.txtTradeId = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -127,6 +127,7 @@
             // 
             this.txtPosId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPosId.Location = new System.Drawing.Point(111, 63);
+            this.txtPosId.MaxLength = 4;
             this.txtPosId.Name = "txtPosId";
             this.txtPosId.Size = new System.Drawing.Size(208, 25);
             this.txtPosId.TabIndex = 6;
@@ -136,10 +137,21 @@
             // 
             this.txtTradeId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTradeId.Location = new System.Drawing.Point(111, 93);
+            this.txtTradeId.MaxLength = 4;
             this.txtTradeId.Name = "txtTradeId";
             this.txtTradeId.Size = new System.Drawing.Size(208, 25);
             this.txtTradeId.TabIndex = 7;
             this.txtTradeId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(111, 33);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
+            this.dateTimePicker1.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(208, 25);
+            this.dateTimePicker1.TabIndex = 8;
             // 
             // tableLayoutPanel2
             // 
@@ -164,6 +176,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "취소";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.but_Click);
             // 
             // button1
             // 
@@ -174,17 +187,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "입력완료";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(111, 33);
-            this.dateTimePicker1.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
-            this.dateTimePicker1.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(208, 25);
-            this.dateTimePicker1.TabIndex = 8;
+            this.button1.Click += new System.EventHandler(this.but_Click);
             // 
             // FrmSaleCancel
             // 

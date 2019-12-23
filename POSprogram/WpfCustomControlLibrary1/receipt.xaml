@@ -46,9 +46,7 @@
                             <TextBlock x:Name="posBlk" FontSize="12" Margin="2" HorizontalAlignment="Right"/>
                         </StackPanel>
                     </Grid>
-
                 </StackPanel>
-
                 <StackPanel Grid.Row="1" Margin="10,0,10,0">
                     <RichTextBox Cursor="Arrow"
                                  x:Name="richTextBox" Margin="10,0,10,0" Block.TextAlignment="Center" FontSize="20" IsReadOnly="True" FontFamily="Consolas" PreviewMouseDown="RichTextBox_PreviewMouseDown">
